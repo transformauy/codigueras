@@ -15,7 +15,7 @@ codiguera_ciuo()
 ```
 
 ### - Codiguera NCM 
-Codiguera de productos de Nomenclatura Común Mercosur, según archivo de referencia "NCM - anexo.pdf".
+Codiguera de productos de Nomenclatura Común Mercosur, según archivo de referencia "NCM - anexo.pdf". Puede cargarse codiguera completa, o en los distintos formatos: wide/long.
 ```
 codiguera_ncm()
 codiguera_ncm_wide()
