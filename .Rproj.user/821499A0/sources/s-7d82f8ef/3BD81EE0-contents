@@ -1,0 +1,32 @@
+#' Codiguera Clasificación Transforma Uruguay
+#'
+#' Función para cargar codiguera de clasificación de grupo de productos Transforma Uruguay.
+#' @title Codiguera Clasificación Transforma Uruguay
+#' @description Función para cargar codiguera de clasificación de grupo de productos Transforma Uruguay.    A partir de codiguera de clasificación de productos de Uruguay XXI.
+#' @keywords clasif_tu
+#' @export
+#' @import readxl dplyr stringr
+#'
+#' @examples
+#' clasif.uyxxi()
+#' codiguera_clasif_tu()
+
+# Librerías
+library(readxl)
+library(dplyr)
+
+# Rutas
+DATABASES <- file.path('/', 'home', 'databases')
+
+
+# import codiguera clasificación Uruguay XXI
+clasif.uyxxi <- function() {
+  file.path(DATABASES, 'codigueras', 'clasif_productos_uyxxi', 'Clasificación Uruguay XXI.xlsx') %>% 
+    read_xlsx %>%
+    rename(ncm_4 = NCM4, 
+           ncm_6 = NCM6,
+           desc.uyxxi = `Clasificación Uruxxi`) %>% 
+    filter(is.na(desc.uyxxi) != TRUE)
+}
+
+  

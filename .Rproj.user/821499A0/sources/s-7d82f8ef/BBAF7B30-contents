@@ -1,0 +1,138 @@
+# Librerías
+library(readr)
+library(stringr)
+library(tidyr)
+library(readxl)
+library(dplyr)
+
+DATABASES <- file.path('/', 'home', 'databases')
+path <- file.path('~', '..', 'vburguete', 'repositorio_info_2')
+
+# import codiguera internacional Naciones Unidas
+cargar_ciiu4 <- function() {
+  file.path(DATABASES, 'codigueras', 'ciiu', 'ISIC_Rev_4_spanish_structure.txt') %>% 
+  read_csv(locale = locale(encoding = "ISO-8859-2")) %>%
+    rename(ciiu4=Code, desc.ciiu4=Title) %>%
+    mutate(seccion=if_else(str_length(ciiu4)==1, ciiu4, NA_character_)) %>%
+    fill(seccion) %>% 
+    add_row(ciiu4 = c("1011", "6100"), 
+            desc.ciiu4 = c("Elaboración y conservación de carne", "Telecomunicaciones"), 
+            seccion = c("C", "F"))
+}
+
+# Cargar base del ciiu a 5 dígitos, codiguera adaptada a Uruguay por el INE
+cargar_ciiu_INE <- function(df) {
+  file.path(DATABASES, 'codigueras', 'ciiu', 'EnricoCiiu.xlsx') %>% 
+    read_excel(col_names = TRUE) %>% rename_all(tolower) %>% 
+    rename(seccion = sección, descripcion = descripción) %>% 
+    filter(descripcion != "Otras actividades del servicio de alimentación") %>% 
+    mutate(ciiu_4 = if_else(ciiu_4 == 1010, 10100,                                                 # Código incorrecto
+                            if_else(ciiu_4 == 1919, 1619,                                          # Corrección confirmada por INE
+                                    if_else(ciiu_4 == 7700, 77000,                                 # Falta cero, mal reportada
+                                            if_else(ciiu_4 == 74300, 84300,                        # Código incorrecto
+                                                    ciiu_4))))) %>% 
+    filter(seccion != "V", ciiu_4 != 68100) %>%
+    add_row(seccion = c("B", "I", rep("L", 3)),
+            ciiu_4 = c(07100, 56290, 68100, 68101, 68109),
+            descripcion = c("Extracción de minerales de hierro",
+                            "Otras actividades del servicio de alimentación",
+                            "Actividades inmobiliarias con bienes propios o arrendados",
+                            "Propiedad y explotación de bienes inmobiliarios propios no rurales",
+                            "Otras actividades con bienes propios o arrendados")) %>% 
+    mutate(ciiu = str_pad(ciiu_4, 5, "left", "0"))
+}
+
+cargar_ciiu_INE_anexo <- function(df){
+  file.path(DATABASES, 'codigueras', 'ciiu', 'EnricoCiiu.xlsx') %>% 
+    read_excel(col_names = TRUE) %>% rename_all(tolower) %>% 
+    rename(seccion = sección, descripcion = descripción) %>% 
+    filter(seccion == "V", as.numeric(ciiu_4) > 1900) %>%
+    mutate(
+      desc_seccion = "Anexo al manual de Clasificación Industrial Internacional Uniforme, (rev.4)",
+      
+      division = "01*", 
+      desc_division = "Anexo - Predios rurales",
+      
+      grupo = "019", 
+      desc_grupo = desc_division,
+      
+      clase = str_c(grupo, "0"), 
+      desc_clase = desc_grupo,
+      
+      subclase = str_pad(ciiu_4, 5, "left", "0"), 
+      desc_subclase = if_else(subclase %in% c("01901", "01902", "01905", "01908"), 
+                              str_c("Sin actividad económica", ' - ', descripcion),
+                              str_c("Con actividad económica", ' - ', descripcion))) %>% 
+    select(-ciiu_4, -descripcion)
+}
+
+cargar_ciiu_division <- function(df){
+  file.path(path, 'codigueras', 'data', 'ciiu_rev4_division.csv') %>% 
+    read_csv(locale=locale(encoding="latin1")) %>% 
+    transmute(division = str_pad(division, 2, "left", "0"), desc_division)
+}
+
+cargar_ciiu_seccion <-  function(df){
+  file.path(path, 'codigueras', 'data', 'ciiu_rev4_division.csv') %>% 
+    read_csv(locale=locale(encoding="latin1")) %>% 
+    transmute(seccion, desc_seccion) %>% 
+    unique
+}
+
+cargar_seccion_division <- function(df){
+  file.path(path, 'codigueras', 'data', 'ciiu_rev4_division.csv') %>% 
+    read_csv(locale=locale(encoding="latin1")) %>% 
+    mutate(division = str_pad(division, 2, "left", "0")) %>% 
+    select(-industria_ad_hoc)
+}
+
+# Considerar el ciiu a 4 dígitos
+codiguera_ciiu_4digitos <- function(df) {
+  cargar_ciiu_INE() %>% transmute(ciiu = str_sub(ciiu, 1, 4), descripcion)
+}
+
+# Considerar el ciiu a 5 dígitos
+codiguera_ciiu_5digitos <- function(df) {
+  cargar_ciiu_INE() %>% transmute(ciiu, descripcion)
+}
+
+source('~/../vburguete/repositorio_info_2/codigueras/ciiu_completa.R')
+
+# Cargar codiguera completa
+codiguera_completa <- function(df){
+  
+  seccion %>% 
+  
+    left_join(seccion_division, by = "seccion") %>% 
+    
+    left_join(division, by = "division") %>% 
+
+    left_join(grupo %>% mutate(division = str_sub(grupo, 1, 2)), by = "division") %>% 
+    
+    left_join(clase %>% mutate(grupo = str_sub(clase, 1, 3)), by = "grupo") %>%                              # ciiu a 4 dígitos
+    mutate(clase = case_when(is.na(clase) == TRUE ~ str_c(grupo, 0), TRUE ~ clase),
+           desc_clase = case_when(is.na(desc_clase) == TRUE ~ desc_grupo, TRUE ~ desc_clase)) %>%
+    
+    left_join(subclase %>% mutate(clase = str_sub(subclase, 1, 4),                                           # ciiu a 5 dígitos
+                                  grupo = str_sub(subclase, 1, 3)),
+              by = c("clase", "grupo")) %>%
+    mutate(subclase = case_when(is.na(subclase) == TRUE ~ str_c(clase, 0), TRUE ~ subclase),
+           desc_subclase = case_when(is.na(desc_subclase) == TRUE ~ desc_clase, TRUE ~ desc_subclase)) %>% 
+    mutate(desc_clase = if_else(clase == "4631", "Comercio al por mayor de alimentos, bebidas y tabaco.",
+                                desc_clase)) %>% 
+    
+    union_all(cargar_ciiu_INE_anexo()) %>% 
+    unique
+}
+
+##### INFORMACIÓN CODIGUERA COMPLETA
+# "seccion":       A, B, ..., V
+# "desc_seccion":  Descripción de las secciones
+# "division":      01, 02, ..., 99
+# "desc_division": Descripción de la división
+# "grupo":         011, 012, ..., 990 
+# "desc_grupo":    Descripción de los grupos
+# "clase":         Código ciiu a 4 dígitos
+# "desc_clase":    Descripción de la rama de actividad
+# "subclase":      Código ciiu a 5 dígitos
+# "desc_subclase": Descipción de la subrama de actividad

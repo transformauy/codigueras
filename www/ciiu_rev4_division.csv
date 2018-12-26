@@ -1,0 +1,89 @@
+division,desc_division,seccion,desc_seccion,industria_ad_hoc
+1,"Producción agropecuaria, caza y actividades de servicios",A,"Producción agropecuaria, forestación y pesca",Actividades primarias
+2,Forestación y extracción de madera,A,"Producción agropecuaria, forestación y pesca",Actividades primarias
+3,Pesca y Acuicultura,A,"Producción agropecuaria, forestación y pesca",Actividades primarias
+5,"Extracción de carbón y lignito, extracción de turba",B,Explotación de minas y canteras,Actividades primarias
+6,Extracción de petróleo crudo y gas natural,B,Explotación de minas y canteras,Actividades primarias
+7,Extracción de minerales metalíferos,B,Explotación de minas y canteras,Actividades primarias
+8,Explotación de otras minas y canteras,B,Explotación de minas y canteras,Actividades primarias
+9,Actividades de apoyo a la explotación de minas,B,Explotación de minas y canteras,Actividades primarias
+10,Elaboración de productos alimenticios,C,Industrias Manufactureras,Industrias manufactureras
+11,Elaboración de bebidas,C,Industrias Manufactureras,Industrias manufactureras
+12,Elaboración de productos de tabaco,C,Industrias Manufactureras,Industrias manufactureras
+13,Fabricación de productos textiles,C,Industrias Manufactureras,Industrias manufactureras
+14,Fabricación de prendas de vestir,C,Industrias Manufactureras,Industrias manufactureras
+15,Fabricación de cueros y productos conexos,C,Industrias Manufactureras,Industrias manufactureras
+16,"Producción de madera y fabricación de productos de madera y corcho, excepto muebles; fabricación de artículos de paja y de materiales trenzables",C,Industrias Manufactureras,Industrias manufactureras
+17,Fabricación de papel y de los productos de papel,C,Industrias Manufactureras,Industrias manufactureras
+18,Actividades de impresión y reproducción de grabaciones,C,Industrias Manufactureras,Industrias manufactureras
+19,Fabricación de coque y de productos de la refinación del petróleo,C,Industrias Manufactureras,Industrias manufactureras
+20,Fabricación de sustancias y productos químicos,C,Industrias Manufactureras,Industrias manufactureras
+21,"Fabricación de productos farmacéuticos, sustancias químicas medicinales y de productos botánicos.",C,Industrias Manufactureras,Industrias manufactureras
+22,Fabricación de productos de caucho y plástico,C,Industrias Manufactureras,Industrias manufactureras
+23,Fabricación de otros productos minerales no metálicos     ,C,Industrias Manufactureras,Industrias manufactureras
+24,Fabricación de metales comunes     ,C,Industrias Manufactureras,Industrias manufactureras
+25,"Fabricación de productos derivados del metal, excepto maquinaria y equipo",C,Industrias Manufactureras,Industrias manufactureras
+26," Fabricación de los productos informáticos, electrónicos y ópticos",C,Industrias Manufactureras,Industrias manufactureras
+27,Fabricación de equipo eléctrico,C,Industrias Manufactureras,Industrias manufactureras
+28,Fabricación de la maquinaria y equipo n.c.p.,C,Industrias Manufactureras,Industrias manufactureras
+29,"Fabricación de vehículos automotores, remolques y semi remolques",C,Industrias Manufactureras,Industrias manufactureras
+30,Fabricación de otros tipos de equipo de transporte  ,C,Industrias Manufactureras,Industrias manufactureras
+31,Fabricación de muebles,C,Industrias Manufactureras,Industrias manufactureras
+32,Otras industrias manufactureras,C,Industrias Manufactureras,Industrias manufactureras
+33,Reparación e instalación de la maquinaria y equipo,C,Industrias Manufactureras,Industrias manufactureras
+35,"Suministro de electricidad, gas, vapor y aire acondicionado",D,"Suministro de electricidad, gas, vapor y aire acondicionado","Suministro de electricidad, gas y agua"
+36,"Captación, tratamiento y suministro de agua",E,"Suministro de agua; alcantarillado, gestión de desechos y actividades de saneamiento","Suministro de electricidad, gas y agua"
+37,Alcantarillado,E,"Suministro de agua; alcantarillado, gestión de desechos y actividades de saneamiento","Suministro de electricidad, gas y agua"
+38,"Recolección, tratamiento y eliminación de desechos, recuperación de materiales",E,"Suministro de agua; alcantarillado, gestión de desechos y actividades de saneamiento","Suministro de electricidad, gas y agua"
+39,Actividades de saneamiento y otros servicios de gestión de desechos,E,"Suministro de agua; alcantarillado, gestión de desechos y actividades de saneamiento","Suministro de electricidad, gas y agua"
+41,Construcción de obras de arquitectura,F,Construcción,Construcción
+42,Ingeniería Civil,F,Construcción,Construcción
+43,Actividades especializadas de la construcción,F,Construcción,Construcción
+45,Comercio al por mayor y al por menor; reparación de vehículos automotores y motocicletas,G,Comercio al por mayor y al por menor; reparación de los vehículos de motor y de las motocicletas,"Comercio, reparaciones, restaurantes y hoteles"
+46,"Comercio al por mayor, excepto de los vehículos de motor y de las motocicletas",G,Comercio al por mayor y al por menor; reparación de los vehículos de motor y de las motocicletas,"Comercio, reparaciones, restaurantes y hoteles"
+47,"Comercio al por menor, excepto el comercio de vehículos automotores y motocicletas",G,Comercio al por mayor y al por menor; reparación de los vehículos de motor y de las motocicletas,"Comercio, reparaciones, restaurantes y hoteles"
+49,Transporte por vía terrestre; transporte por tuberías,H,Transporte y almacenamiento,Transporte y almacenamiento
+50,Transporte por vía acuática,H,Transporte y almacenamiento,Transporte y almacenamiento
+51,Transporte por vía aérea,H,Transporte y almacenamiento,Transporte y almacenamiento
+52,Depósito y actividades de transporte complementarias,H,Transporte y almacenamiento,Transporte y almacenamiento
+53,Correo y servicios de mensajería,H,Transporte y almacenamiento,Transporte y almacenamiento
+55,Alojamiento,I,Alojamiento y servicios de comida,"Comercio, reparaciones, restaurantes y hoteles"
+56,Servicio de alimento y bebida,I,Alojamiento y servicios de comida,"Comercio, reparaciones, restaurantes y hoteles"
+58,Actividades de publicación,J,Información y comunicación,Informática y comunicación
+59,"Actividades de producción de películas, de video de programas de televisión, grabación y publicación de música y sonido.",J,Información y comunicación,Informática y comunicación
+60,Actividades de Programación y distribución.,J,Información y comunicación,Informática y comunicación
+61,Telecomunicaciones.,J,Información y comunicación,Informática y comunicación
+62,Actividades de la tecnología de información y del servicio informativo.,J,Información y comunicación,Informática y comunicación
+63,Actividades del servicio informativo.,J,Información y comunicación,Informática y comunicación
+64,"Servicios financieros, excepto seguros y fondos de pensiones.",K,Actividades financieras y de seguros,Otras actividades
+65,"Seguros, reaseguros y fondos de pensiones, excepto los planes de seguridad social de afiliación obligatoria.",K,Actividades financieras y de seguros,Otras actividades
+66,Actividades auxiliares a los servicios financieros y actividades de seguros,K,Actividades financieras y de seguros,Otras actividades
+68,Actividades inmobiliarias,L,Actividades inmobiliarias,Otras actividades
+69,Actividades jurídicas y de contabilidad,M,"Actividades profesionales, científicas y técnicas",Otras actividades
+70,"Actividades de oficinas centrales, actividades de administración de empresas y de consultoría sobre administración de empresas",M,"Actividades profesionales, científicas y técnicas",Otras actividades
+71,Actividades de arquitectura e ingeniería; ensayos y análisis técnicos.,M,"Actividades profesionales, científicas y técnicas",Otras actividades
+72,Investigación y desarrollo científicos.,M,"Actividades profesionales, científicas y técnicas",Otras actividades
+73,Publicidad e investigación de mercados,M,"Actividades profesionales, científicas y técnicas",Otras actividades
+74,"Otras actividades profesionales, científicas y técnicas",M,"Actividades profesionales, científicas y técnicas",Otras actividades
+75,Actividades veterinarias,M,"Actividades profesionales, científicas y técnicas",Otras actividades
+77,Actividades del alquiler y arrendamiento,N,Actividades administrativas y servicios de apoyo,Otras actividades
+78,Actividades de las agencias de empleo,N,Actividades administrativas y servicios de apoyo,Otras actividades
+79,"Actividades de las agencias de viajes, operadores turísticos y servicios de reserva relacionados",N,Actividades administrativas y servicios de apoyo,Otras actividades
+80,Actividades de seguridad e investigación,N,Actividades administrativas y servicios de apoyo,Otras actividades
+81,"Actividades de servicio a edificios y paisajes (jardines, áreas verdes, etc.)",N,Actividades administrativas y servicios de apoyo,Otras actividades
+82,"Actividades de oficinas administrativas, soporte de oficinas y otras actividades de soportes de negocios.",N,Actividades administrativas y servicios de apoyo,Otras actividades
+84,Administración pública y la defensa; planes de seguridad social de afiliación obligatoria,O,Administración pública y defensa; planes de seguridad social de afiliación obligatoria,Otras actividades
+85,Enseñanza,P,Enseñanza,Otras actividades
+86,Actividades relacionadas con la salud humana,Q,Servicios sociales y relacionados con la Salud humana,Otras actividades
+87,Instituciones residenciales de cuidado,Q,Servicios sociales y relacionados con la Salud humana,Otras actividades
+88,Servicios sociales sin alojamiento,Q,Servicios sociales y relacionados con la Salud humana,Otras actividades
+90,"Actividades de arte, entretenimiento y creatividad",R,"Artes, entretenimiento y recreación",Otras actividades
+91,"Bibliotecas, archivos, museos y otras actividades culturales",R,"Artes, entretenimiento y recreación",Otras actividades
+92,Actividades de juego y apuestas,R,"Artes, entretenimiento y recreación",Otras actividades
+93,"Actividades deportivas, de diversión y esparcimiento",R,"Artes, entretenimiento y recreación",Otras actividades
+94,Actividades de asociaciones u organizaciones,S,Otras actividades de servicio,Otras actividades
+95,Reparación de computadoras y artículos de uso personal y doméstico.,S,Otras actividades de servicio,Otras actividades
+96,Otras actividades de servicios,S,Otras actividades de servicio,Otras actividades
+97,Actividades de los hogares en calidad de empleadores de personal doméstico,T,"Actividades de los hogares en calidad de empleadores, actividades indiferenciadas de producción de bienes y servicios de los hogares para uso propio",Otras actividades
+98,Actividades indiferenciadas de producción de bienes y servicios de los hogares privados para uso propio.,T,"Actividades de los hogares en calidad de empleadores, actividades indiferenciadas de producción de bienes y servicios de los hogares para uso propio",Otras actividades
+99,Actividades de organizaciones y órganos extraterritoriales,U,Actividades de organizaciones y órganos extraterritoriales,Otras actividades

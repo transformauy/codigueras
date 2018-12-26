@@ -1,0 +1,96 @@
+# Librerías
+library(readr)
+library(stringr)
+library(tidyr)
+library(readxl)
+library(dplyr)
+
+# Análisis codiguera del INE
+ciiu <- cargar_ciiu_INE() %>%
+  
+  arrange(ciiu) %>% 
+  
+  mutate(division = ifelse(str_detect(ciiu, '000$') == TRUE, str_sub(ciiu, 1, 2), NA),             #  división detectada
+         
+         grupo = ifelse((is.na(division) == TRUE & str_detect(ciiu, '00$') == TRUE),               #  grupo detectado
+                        str_sub(ciiu, 1, 3), NA),
+         descripcion_grupo = ifelse(is.na(grupo) != TRUE, descripcion, NA),
+         grupo = if_else(is.na(grupo) == TRUE, str_c(division, "0"), grupo),
+
+         clase = ifelse((is.na(division) == TRUE & is.na(grupo) == TRUE & 
+                           str_detect(ciiu, '0$') == TRUE), str_sub(ciiu, 1, 4), NA),              #  clase detectada
+         descripcion_clase = ifelse(is.na(clase) != TRUE, descripcion, NA),
+
+         subclase = ifelse((is.na(division) == TRUE & is.na(grupo) == TRUE &                       #  subclase detectada
+                              is.na(clase) == TRUE), ciiu, NA),
+         descripcion_subclase = ifelse(is.na(subclase) != TRUE, descripcion, NA)) %>% 
+  
+  mutate(clase = if_else((is.na(subclase) != TRUE & is.na(clase) == TRUE), 
+                         str_sub(subclase, 1, 4), clase),
+         grupo = if_else((is.na(clase) != TRUE & is.na(grupo) == TRUE), 
+                         str_sub(clase, 1, 3), grupo),
+         division = if_else((is.na(grupo) != TRUE & is.na(division) == TRUE), 
+                            str_sub(grupo, 1, 2), division)) %>% 
+  
+  mutate(subclase = if_else(clase == "4631", "46310", subclase),
+         descripcion_subclase = if_else(clase == "4631", 
+                                        "Comercio al por mayor de aves y sus productos", 
+                                        descripcion_subclase))
+
+
+#### Componentes de la codiguera completa
+
+seccion <- cargar_ciiu_seccion()                                                                   #  21 secciones, falta unicamente la sección V
+
+division <- cargar_ciiu_division()                                                                 #  88 divisiones, está completa.
+
+seccion_division <- cargar_seccion_division() %>% select(seccion, division) %>% unique
+
+grupo <- ciiu %>% select(division, grupo, descripcion_grupo) %>% 
+  add_row(division = c("01", "03", "07", "10"),
+          grupo = c("011", "032", "071", "101"),
+          descripcion_grupo = c("Cultivo de productos no perennes",                                #  agrega grupos faltantes
+                                "Acuicultura",                                                     #  según archivo "CIIU-Rev-4_Notas-explicativas.pdf"
+                                "Extracción de minerales de hierro",
+                                "Procesamiento y conservación de carne")) %>%
+  left_join(division %>% filter(division %in% c("11", "12", "17", "21", "31", "36",                #  asigna descripcion de la división a los grupos que corresponde
+                                                "37", "39", "41", "61", "62", "75",                #  según archivo "CIIU-Rev-4_Notas-explicativas.pdf"
+                                                "90", "91", "92", "96", "97", "99")), 
+            by = "division") %>% 
+  mutate(desc_grupo = ifelse(is.na(descripcion_grupo) == TRUE, 
+                             desc_division, descripcion_grupo)) %>% 
+  select(grupo, desc_grupo) %>% 
+  filter(is.na(desc_grupo) != TRUE) %>%
+  unique %>% 
+  arrange(grupo)
+
+clase <- ciiu %>% select(grupo, clase, descripcion_clase, subclase) %>% 
+  left_join(grupo %>% 
+              filter(grupo %in% c("120", "210", "360", "370", "390", "410", "461",                 #  asigna descripcion de la grupos a las clases que corresponde
+                                  "462", "463", "750", "900", "920", "970", "990")),               #  según archivo "CIIU-Rev-4_Notas-explicativas.pdf"
+            by = "grupo") %>% 
+  mutate(clase = if_else(is.na(desc_grupo) != TRUE, str_c(grupo, "0"), clase)) %>% 
+  mutate(desc_clase = ifelse(is.na(descripcion_clase) == TRUE, 
+                             desc_grupo, descripcion_clase)) %>% 
+  select(clase, desc_clase) %>% 
+  mutate(clase =                                                                                   # 46310 corresponde a la décima clase del grupo 463
+           if_else(desc_clase == "Comercio al por mayor de aves y sus productos",
+                   "4631", clase)) %>% 
+  filter(is.na(desc_clase) != TRUE) %>% unique %>% arrange(clase)
+
+
+
+subclase <- ciiu %>% select(clase, subclase, descripcion_subclase) %>% 
+  left_join(clase %>% 
+              filter(clase %in% c("1200", "2100", "3600", "3700", "3900",                          #  asigna descripcion de la clase a las subclases que corresponde
+                                  "4100", "7500", "9000", "9900")),                                #  según archivo "CIIU-Rev-4_Notas-explicativas.pdf"
+            by = "clase") %>% 
+  mutate(subclase = 
+           if_else(is.na(desc_clase) != TRUE, str_c(clase, "0"), subclase)) %>% 
+  mutate(desc_subclase = 
+           ifelse(is.na(descripcion_subclase) == TRUE, desc_clase, descripcion_subclase)) %>% 
+  select(subclase, desc_subclase) %>%
+  filter(is.na(desc_subclase) != TRUE) %>% 
+  unique %>%
+  arrange(subclase)
+

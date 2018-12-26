@@ -1,0 +1,61 @@
+]0;/home/vburguete/codigueras]0;vburguete@r-sntpc-desa: ~/codiguerasvburguete@r-sntpc-desa:~/codigueras$ [K]0;vburguete@r-sntpc-desa: ~/codiguerasvburguete@r-sntpc-desa:~/codigueras$ git iti[K[Knit
+Initialized empty Git repository in /home/vburguete/codigueras/.git/
+]0;/home/vburguete/codigueras]0;vburguete@r-sntpc-desa: ~/codiguerasvburguete@r-sntpc-desa:~/codigueras$ git status
+On branch master
+
+Initial commit
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+
+	[31m.Rbuildignore[m
+	[31m.Rproj.user/[m
+	[31mDESCRIPTION[m
+	[31mNAMESPACE[m
+	[31mR/[m
+	[31mcodigueras.Rproj[m
+	[31mman/[m
+	[31mwww/[m
+
+nothing added to commit but untracked files present (use "git add" to track)
+]0;/home/vburguete/codigueras]0;vburguete@r-sntpc-desa: ~/codiguerasvburguete@r-sntpc-desa:~/codigueras$ git add R/
+]0;/home/vburguete/codigueras]0;vburguete@r-sntpc-desa: ~/codiguerasvburguete@r-sntpc-desa:~/codigueras$ git add man/
+]0;/home/vburguete/codigueras]0;vburguete@r-sntpc-desa: ~/codiguerasvburguete@r-sntpc-desa:~/codigueras$ git add www/
+]0;/home/vburguete/codigueras]0;vburguete@r-sntpc-desa: ~/codiguerasvburguete@r-sntpc-desa:~/codigueras$ git status
+On branch master
+
+Initial commit
+
+Changes to be committed:
+  (use "git rm --cached <file>..." to unstage)
+
+	[32mnew file:   R/codiguera_ciiu.R[m
+	[32mnew file:   R/codiguera_ciuo.R[m
+	[32mnew file:   R/codiguera_clasif_tu.R[m
+	[32mnew file:   R/codiguera_ncm.R[m
+	[32mnew file:   man/codiguera_ciiu.Rd[m
+	[32mnew file:   man/codiguera_ciuo.Rd[m
+	[32mnew file:   man/codiguera_clasif_tu.Rd[m
+	[32mnew file:   man/codiguera_ncm.Rd[m
+	[32mnew file:   "www/Clasificaci\303\263n Uruguay XXI.xlsx"[m
+	[32mnew file:   www/EnricoCiiu.xlsx[m
+	[32mnew file:   www/asigna.clasif_tu.R[m
+	[32mnew file:   www/asigna.seccion.R[m
+	[32mnew file:   www/auxiliares_ciiu.R[m
+	[32mnew file:   www/capitulos.productos.R[m
+	[32mnew file:   www/ciiu_rev4_division.csv[m
+	[32mnew file:   www/listado_a_usar_Ocupaciones.xls[m
+	[32mnew file:   www/ncm.rds[m
+	[32mnew file:   www/ncm_5.xls[m
+	[32mnew file:   www/secciones.productos.R[m
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+
+	[31m.Rbuildignore[m
+	[31m.Rproj.user/[m
+	[31mDESCRIPTION[m
+	[31mNAMESPACE[m
+	[31mcodigueras.Rproj[m
+
+]0;/home/vburguete/codigueras]0;vburguete@r-sntpc-desa: ~/codiguerasvburguete@r-sntpc-desa:~/codigueras$ git add[K[K[K[K[K[K[Kgit add -A
