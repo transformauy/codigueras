@@ -35,6 +35,6 @@ devtools::install_github('vburguete/codigueras')
 library(codigueras)
 ```
 
-## www
+## data-raw
 Carpeta con funciones y archivos auxiliares para las codigueras.
 
