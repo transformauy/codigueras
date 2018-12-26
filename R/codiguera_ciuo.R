@@ -16,7 +16,7 @@ library(readxl)
 library(dplyr)
 
 # Helpers
-path <- file.path('www', 'listado_a_usar_Ocupaciones.xls')
+path <- file.path('data-raw', 'listado_a_usar_Ocupaciones.xls')
 
 
 codiguera_ciuo <- function() {

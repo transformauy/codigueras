@@ -18,12 +18,12 @@ library(dplyr)
 library(stringr)
 
 # Helpers
-file.path('www', 'asigna.seccion.R') %>% source()
-file.path('www', 'capitulos.productos.R') %>% source()
-file.path('www', 'secciones.productos.R') %>% source()
+file.path('data-raw', 'asigna.seccion.R') %>% source()
+file.path('data-raw', 'capitulos.productos.R') %>% source()
+file.path('data-raw', 'secciones.productos.R') %>% source()
 
 ## Codigueras productos
-NCM <- file.path('www', 'ncm.rds') %>%
+NCM <- file.path('data-raw', 'ncm.rds') %>%
   readRDS() %>%
   transmute(ncm_4 = as.character(codigo),
             descripcionNCM = descripcion) %>%
@@ -33,7 +33,7 @@ NCM <- file.path('www', 'ncm.rds') %>%
 
 # import Codiguera de grupos según clasificación de Uruguay XXI
 clasif.uyxxi <- function() {
-  file.path('www', 'Clasificación Uruguay XXI.xlsx') %>%
+  file.path('data-raw', 'Clasificación Uruguay XXI.xlsx') %>%
     read_xlsx %>%
     rename(ncm_4 = NCM4,
            ncm_6 = NCM6,

@@ -19,7 +19,7 @@ library(readxl)
 library(dplyr)
 
 # helpers
-file.path('www', 'auxiliares_ciiu.R') %>% source()
+file.path('data-raw', 'auxiliares_ciiu.R') %>% source()
 
 
 # Cargar codiguera completa
