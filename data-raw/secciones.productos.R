@@ -25,3 +25,5 @@ secciones.productos <- tribble(
   20, "MERCANCÍAS Y PRODUCTOS DIVERSOS",
   21, "OBJETOS DE ARTE O COLECCIÓN Y ANTIGÜEDADES") %>%
   mutate(seccion = as.roman(seccion))
+
+# save(secciones.productos, file = 'data/secciones.productos.rda')

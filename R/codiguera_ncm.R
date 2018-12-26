@@ -38,7 +38,7 @@ ncm_base <- file.path('data-raw', 'ncm_5.xls') %>%
            if_else(n == 5, 'ncm_5',
            if_else(n == 6, 'ncm_6',
            if_else(n == 7, 'ncm_7', 'ncm_8')))))))
-
+# save(ncm_base, file = 'data/ncm_base.rda')
 
 # Incorporo los datasets generados en una única codiguera
 codiguera_ncm <- function(){

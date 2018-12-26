@@ -103,3 +103,5 @@ capitulos.productos <- tribble(
   "98",        "(Reservado para usos particulares por las Partes contratantes)",
   "99",        "(Reservado para usos particulares por las Partes contratantes)"
 )
+
+# save(capitulos.productos, file = 'data/capitulos.productos.rda')

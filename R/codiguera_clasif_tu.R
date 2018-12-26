@@ -30,6 +30,8 @@ NCM <- file.path('data-raw', 'ncm.rds') %>%
   mutate(ncm_4 = case_when(nchar(ncm_4)==3 ~ paste("0", ncm_4, sep = ""),
                            TRUE ~ ncm_4),
          capitulo = substring(ncm_4, 1, 2))
+# save(NCM, file = 'data/NCM.rda')
+
 
 # import Codiguera de grupos según clasificación de Uruguay XXI
 clasif.uyxxi <- function() {
