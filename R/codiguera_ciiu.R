@@ -5,7 +5,7 @@
 #' @description Función para cargar codiguera de CIIU Rev. 4    Clasificación Industrial Internacional Uniforme.
 #' @keywords ciiu
 #' @export
-#' @import readxl dplyr stringr
+#' @import readr readxl dplyr stringr
 #'
 #' @examples
 #' codiguera_ciiu()
