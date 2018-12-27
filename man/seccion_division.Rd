@@ -3,7 +3,7 @@
 \docType{data}
 \name{seccion_division}
 \alias{seccion_division}
-\title{Sección - Division}
+\title{Sección y Division}
 \format{Un data-frame con dos variables: \code{seccion} y \code{division}.
 (\code{seccion} está desagregada en las 21 secciones de actividad disponibles, y en cada caso
 las divisiones que le corresponden)}
