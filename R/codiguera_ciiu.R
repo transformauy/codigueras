@@ -18,9 +18,6 @@ library(tidyr)
 library(readxl)
 library(dplyr)
 
-# helpers
-# file.path('data-raw', 'auxiliares_ciiu.R') %>% source()
-
 
 # Cargar codiguera completa
 codiguera_ciiu <- function(df){

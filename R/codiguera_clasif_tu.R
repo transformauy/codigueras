@@ -17,24 +17,6 @@ library(readxl)
 library(dplyr)
 library(stringr)
 
-# Helpers
-# parse(file.path('data-raw', 'asigna.seccion.R'))
-# source(system.file(package = 'codigueras', 'data-raw', 'asigna.seccion.r'))
-# file.path('data-raw', 'asigna.seccion.R') %>% source()
-# file.path('data-raw', 'capitulos.productos.R') %>% source()
-# file.path('data-raw', 'secciones.productos.R') %>% source()
-
-## Codigueras productos
-NCM <- file.path('data-raw', 'ncm.rds') %>%
-  readRDS() %>%
-  transmute(ncm_4 = as.character(codigo),
-            descripcionNCM = descripcion) %>%
-  mutate(ncm_4 = case_when(nchar(ncm_4)==3 ~ paste("0", ncm_4, sep = ""),
-                           TRUE ~ ncm_4),
-         capitulo = substring(ncm_4, 1, 2))
-# save(NCM, file = 'data/NCM.rda')
-devtools::use_data(NCM, overwrite = TRUE)
-
 
 # import Codiguera de grupos según clasificación de Uruguay XXI
 clasif.uyxxi <- function() {
