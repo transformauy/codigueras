@@ -18,9 +18,10 @@ library(dplyr)
 library(stringr)
 
 # Helpers
-file.path('data-raw', 'asigna.seccion.R') %>% source()
-file.path('data-raw', 'capitulos.productos.R') %>% source()
-file.path('data-raw', 'secciones.productos.R') %>% source()
+source(system.file(package = 'codigueras', 'data-raw', 'asigna.seccion.r'))
+# file.path('data-raw', 'asigna.seccion.R') %>% source()
+# file.path('data-raw', 'capitulos.productos.R') %>% source()
+# file.path('data-raw', 'secciones.productos.R') %>% source()
 
 ## Codigueras productos
 NCM <- file.path('data-raw', 'ncm.rds') %>%
