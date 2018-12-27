@@ -38,3 +38,22 @@ library(codigueras)
 ## data-raw
 Carpeta con funciones y archivos auxiliares para las codigueras.
 
+
+## data
+Carpeta con archivos .rda auxiliares para las codigueras, generados en data-raw.
+
+## Objetos
+Archivos disponibles en el paquete:
+- clasif.uyxxi: Codiguera de grupos de productos de Uruguay XXI.
+- ciiu: Codiguera CIIU INE.
+- capitulos.productos: Capítulos de productos.
+- secciones.productos: Secciones de productos.
+- seccion: Secciones de actividad.
+- division: Divisiones de actividad.
+- seccion_division: Secciones de actividad con sus correspondientes divisiones.
+- grupo: Grupos de actividad.
+- clase: Clases de actividad.
+- subclase: Subclases de actividad.
+- listado_ocupaciones: Listado Nacional de Denominaciones de Ocupaciones (INE).
+- NCM: Listado de productos Nomenclatura Común Mercosur.
+- ncm_base: Codiguera completa NCM adaptada a Uruguay.
