@@ -19,7 +19,7 @@ library(stringr)
 library(tibble)
 
 # Helpers
-parse(file.path('data-raw', 'asigna.seccion.R'))
+# parse(file.path('data-raw', 'asigna.seccion.R'))
 # file.path('data-raw', 'asigna.seccion.R') %>% source()
 # file.path('data-raw', 'capitulos.productos.R') %>% source()
 # file.path('data-raw', 'secciones.productos.R') %>% source()
