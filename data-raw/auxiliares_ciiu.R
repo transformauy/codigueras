@@ -42,6 +42,7 @@ cargar_ciiu_INE_anexo <- file.path('data-raw', 'EnricoCiiu.xlsx') %>%
                               str_c("Sin actividad económica", ' - ', descripcion),
                               str_c("Con actividad económica", ' - ', descripcion))) %>%
     select(-ciiu_4, -descripcion)
+# save(cargar_ciiu_INE_anexo, file = 'data/cargar_ciiu_INE_anexo.rda')
 devtools::use_data(cargar_ciiu_INE_anexo, overwrite = TRUE)
 
 cargar_ciiu_division <- file.path('data-raw', 'ciiu_rev4_division.csv') %>%
