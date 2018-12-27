@@ -31,5 +31,9 @@ codiguera_clasif_tu <- function(){
                           by = "seccion"),
               by = c("capitulo", "seccion", "descripcion.seccion")) %>%
     asigna.clasif_tu() %>%
+    mutate(clasif.tu = case_when(ncm_4 == "4703" ~ "Celulosa",
+                                 ncm_4 %in% c("2106", "3302") ~ "Concentrado de bebidas",
+                                 clasif.tu == "Despojos y subproductos cárnicos (bovinos principalmente)" ~ "Despojos y subproductos cárnicos",
+                                 TRUE ~ clasif.tu)) %>%
     transmute(seccion, capitulo, ncm_4, ncm_6, clasif.tu)
 }

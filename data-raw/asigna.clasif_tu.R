@@ -2,7 +2,7 @@
 # Función para asignar clasificación TU
 
 asigna.clasif_tu <- function(df){
-  df1 <- df %>%
+  df %>%
     mutate(clasif.tu = case_when((is.na(desc.uyxxi) == TRUE & capitulo == "01") ~ "Los demás animales vivos",
                                  (is.na(desc.uyxxi) == TRUE & capitulo == "04") ~ "Los demás productos comestibles de origen animal",
                                  (is.na(desc.uyxxi) == TRUE & capitulo == "05") ~ "Los demás productos de origen animal",
@@ -40,10 +40,4 @@ asigna.clasif_tu <- function(df){
                                  (is.na(desc.uyxxi) == TRUE & capitulo == "95") ~ "Juguetes, juegos y artículos para recreo o deporte",
                                  (is.na(desc.uyxxi) == TRUE) ~ descripcion.capitulo,
                                  TRUE ~ desc.uyxxi))
-
-  df <- df1 %>%
-    mutate(clasif.tu = case_when(ncm_4 == "4703" ~ "Celulosa",
-                                 ncm_4 %in% c("2106", "3302") ~ "Concentrado de bebidas",
-                                 clasif.tu == "Despojos y subproductos cárnicos (bovinos principalmente)" ~ "Despojos y subproductos cárnicos",
-                                 TRUE ~ clasif.tu))
 }
