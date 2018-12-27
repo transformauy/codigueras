@@ -27,3 +27,4 @@ secciones.productos <- tribble(
   mutate(seccion = as.roman(seccion))
 
 # save(secciones.productos, file = 'data/secciones.productos.rda')
+devtools::use_data(secciones.productos, overwrite = TRUE)

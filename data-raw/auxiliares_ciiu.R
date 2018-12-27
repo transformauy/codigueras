@@ -1,7 +1,6 @@
 
 # Cargar base del ciiu a 5 dígitos, codiguera adaptada a Uruguay por el INE
-cargar_ciiu_INE <- function(df) {
-  file.path('data-raw', 'EnricoCiiu.xlsx') %>%
+cargar_ciiu_INE <- file.path('data-raw', 'EnricoCiiu.xlsx') %>%
     read_excel(col_names = TRUE) %>% rename_all(tolower) %>%
     rename(seccion = sección, descripcion = descripción) %>%
     filter(descripcion != "Otras actividades del servicio de alimentación") %>%
@@ -19,11 +18,10 @@ cargar_ciiu_INE <- function(df) {
                             "Propiedad y explotación de bienes inmobiliarios propios no rurales",
                             "Otras actividades con bienes propios o arrendados")) %>%
     mutate(ciiu = str_pad(ciiu_4, 5, "left", "0"))
-}
+devtools::use_data(cargar_ciiu_INE, overwrite = TRUE)
 
 
-cargar_ciiu_INE_anexo <- function(df){
-  file.path('data-raw', 'EnricoCiiu.xlsx') %>%
+cargar_ciiu_INE_anexo <- file.path('data-raw', 'EnricoCiiu.xlsx') %>%
     read_excel(col_names = TRUE) %>% rename_all(tolower) %>%
     rename(seccion = sección, descripcion = descripción) %>%
     filter(seccion == "V", as.numeric(ciiu_4) > 1900) %>%
@@ -44,27 +42,24 @@ cargar_ciiu_INE_anexo <- function(df){
                               str_c("Sin actividad económica", ' - ', descripcion),
                               str_c("Con actividad económica", ' - ', descripcion))) %>%
     select(-ciiu_4, -descripcion)
-}
+devtools::use_data(cargar_ciiu_INE_anexo, overwrite = TRUE)
 
-cargar_ciiu_division <- function(df){
-  file.path('data-raw', 'ciiu_rev4_division.csv') %>%
+cargar_ciiu_division <- file.path('data-raw', 'ciiu_rev4_division.csv') %>%
     read_csv(locale=locale(encoding="latin1")) %>%
     transmute(division = str_pad(division, 2, "left", "0"), desc_division)
-}
+devtools::use_data(cargar_ciiu_division, overwrite = TRUE)
 
-cargar_ciiu_seccion <-  function(df){
-  file.path('data-raw', 'ciiu_rev4_division.csv') %>%
+cargar_ciiu_seccion <-  file.path('data-raw', 'ciiu_rev4_division.csv') %>%
     read_csv(locale=locale(encoding="latin1")) %>%
     transmute(seccion, desc_seccion) %>%
     unique
-}
+devtools::use_data(cargar_ciiu_seccion, overwrite = TRUE)
 
-cargar_seccion_division <- function(df){
-  file.path('data-raw', 'ciiu_rev4_division.csv') %>%
+cargar_seccion_division <- file.path('data-raw', 'ciiu_rev4_division.csv') %>%
     read_csv(locale=locale(encoding="latin1")) %>%
     mutate(division = str_pad(division, 2, "left", "0")) %>%
     select(-industria_ad_hoc)
-}
+devtools::use_data(cargar_seccion_division, overwrite = TRUE)
 
 # Considerar el ciiu a 4 dígitos
 codiguera_ciiu_4digitos <- function(df) {
@@ -112,15 +107,17 @@ ciiu <- cargar_ciiu_INE() %>%
 devtools::use_data(ciiu, overwrite = TRUE)
 
 #### Componentes de la codiguera completa
-seccion <- cargar_ciiu_seccion()                                                                   #  21 secciones, falta unicamente la sección V
+seccion <- cargar_ciiu_seccion                                                                     #  21 secciones, falta unicamente la sección V
 # save(seccion, file = 'data/seccion.rda')
 devtools::use_data(seccion, overwrite = TRUE)
 
-division <- cargar_ciiu_division()                                                                 #  88 divisiones, está completa.
+division <- cargar_ciiu_division                                                                   #  88 divisiones, está completa.
 # save(division, file = 'data/division.rda')
 devtools::use_data(division, overwrite = TRUE)
 
-seccion_division <- cargar_seccion_division() %>% select(seccion, division) %>% unique
+seccion_division <- cargar_seccion_division %>%
+  select(seccion, division) %>%
+  unique
 # save(seccion_division, file = 'data/seccion_division.rda')
 devtools::use_data(seccion_division, overwrite = TRUE)
 

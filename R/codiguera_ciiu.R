@@ -45,7 +45,7 @@ codiguera_ciiu <- function(df){
     mutate(desc_clase = if_else(clase == "4631", "Comercio al por mayor de alimentos, bebidas y tabaco.",
                                 desc_clase)) %>%
 
-    union_all(cargar_ciiu_INE_anexo()) %>%
+    union_all(cargar_ciiu_INE_anexo) %>%
     unique
 }
 
