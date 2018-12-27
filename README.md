@@ -3,7 +3,7 @@
 Paquete que incluye funciones de lectura de las distintas codigueras disponibles:
 
 ### - Codiguera CIIU
-Codiguera de ramas de actividad Clasificación Industrial Internacional Uniforme Rev.4 (CIIU), según archivo de referencia del INE "Estructura CIIU4.pdf".
+Codiguera de ramas de actividad según Clasificación Industrial Internacional Uniforme Rev.4 (CIIU), en base al archivo de referencia del INE "Estructura CIIU4.pdf".
 ```
 codiguera_ciiu()
 ```
@@ -15,7 +15,7 @@ codiguera_ciuo()
 ```
 
 ### - Codiguera NCM 
-Codiguera de productos de Nomenclatura Común Mercosur, según archivo de referencia "NCM - anexo.pdf". Puede cargarse codiguera completa, o en los distintos formatos: wide/long.
+Codiguera de productos según Nomenclatura Común Mercosur, en base al archivo de referencia "NCM - anexo.pdf". Puede cargarse codiguera completa, o en los distintos formatos: wide/long.
 ```
 codiguera_ncm()
 codiguera_ncm_wide()
