@@ -63,17 +63,17 @@ devtools::use_data(cargar_seccion_division, overwrite = TRUE)
 
 # Considerar el ciiu a 4 dígitos
 codiguera_ciiu_4digitos <- function(df) {
-  cargar_ciiu_INE() %>% transmute(ciiu = str_sub(ciiu, 1, 4), descripcion)
+  cargar_ciiu_INE %>% transmute(ciiu = str_sub(ciiu, 1, 4), descripcion)
 }
 
 # Considerar el ciiu a 5 dígitos
 codiguera_ciiu_5digitos <- function(df) {
-  cargar_ciiu_INE() %>% transmute(ciiu, descripcion)
+  cargar_ciiu_INE %>% transmute(ciiu, descripcion)
 }
 
 
 # Análisis codiguera del INE
-ciiu <- cargar_ciiu_INE() %>%
+ciiu <- cargar_ciiu_INE %>%
 
   arrange(ciiu) %>%
 
