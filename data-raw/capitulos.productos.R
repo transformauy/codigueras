@@ -105,3 +105,4 @@ capitulos.productos <- tribble(
 )
 
 # save(capitulos.productos, file = 'data/capitulos.productos.rda')
+devtools::use_data(capitulos.productos, overwrite = TRUE)

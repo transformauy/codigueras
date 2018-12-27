@@ -109,16 +109,20 @@ ciiu <- cargar_ciiu_INE() %>%
                                         "Comercio al por mayor de aves y sus productos",
                                         descripcion_subclase))
 # save(ciiu, file = 'data/ciiu.rda')
+devtools::use_data(ciiu, overwrite = TRUE)
 
 #### Componentes de la codiguera completa
 seccion <- cargar_ciiu_seccion()                                                                   #  21 secciones, falta unicamente la sección V
 # save(seccion, file = 'data/seccion.rda')
+devtools::use_data(seccion, overwrite = TRUE)
 
 division <- cargar_ciiu_division()                                                                 #  88 divisiones, está completa.
 # save(division, file = 'data/division.rda')
+devtools::use_data(division, overwrite = TRUE)
 
 seccion_division <- cargar_seccion_division() %>% select(seccion, division) %>% unique
 # save(seccion_division, file = 'data/seccion_division.rda')
+devtools::use_data(seccion_division, overwrite = TRUE)
 
 grupo <- ciiu %>% select(division, grupo, descripcion_grupo) %>%
   add_row(division = c("01", "03", "07", "10"),
@@ -138,6 +142,7 @@ grupo <- ciiu %>% select(division, grupo, descripcion_grupo) %>%
   unique %>%
   arrange(grupo)
 # save(grupo, file = 'data/grupo.rda')
+devtools::use_data(grupo, overwrite = TRUE)
 
 
 clase <- ciiu %>% select(grupo, clase, descripcion_clase, subclase) %>%
@@ -154,6 +159,7 @@ clase <- ciiu %>% select(grupo, clase, descripcion_clase, subclase) %>%
                    "4631", clase)) %>%
   filter(is.na(desc_clase) != TRUE) %>% unique %>% arrange(clase)
 # save(clase, file = 'data/clase.rda')
+devtools::use_data(clase, overwrite = TRUE)
 
 subclase <- ciiu %>% select(clase, subclase, descripcion_subclase) %>%
   left_join(clase %>%
@@ -169,6 +175,6 @@ subclase <- ciiu %>% select(clase, subclase, descripcion_subclase) %>%
   unique %>%
   arrange(subclase)
 # save(subclase, file = 'data/subclase.rda')
-
+devtools::use_data(subclase, overwrite = TRUE)
 
 

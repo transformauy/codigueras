@@ -31,6 +31,7 @@ NCM <- file.path('data-raw', 'ncm.rds') %>%
                            TRUE ~ ncm_4),
          capitulo = substring(ncm_4, 1, 2))
 # save(NCM, file = 'data/NCM.rda')
+devtools::use_data(NCM, overwrite = TRUE)
 
 
 # import Codiguera de grupos según clasificación de Uruguay XXI
