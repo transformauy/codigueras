@@ -19,9 +19,10 @@ library(stringr)
 library(tibble)
 
 # Helpers
-file.path('data-raw', 'asigna.seccion.R') %>% source()
-file.path('data-raw', 'capitulos.productos.R') %>% source()
-file.path('data-raw', 'secciones.productos.R') %>% source()
+parse(file.path('data-raw', 'asigna.seccion.R'))
+# file.path('data-raw', 'asigna.seccion.R') %>% source()
+# file.path('data-raw', 'capitulos.productos.R') %>% source()
+# file.path('data-raw', 'secciones.productos.R') %>% source()
 
 
 # Codiguera completa (Sección, Capítulo, Partida, Subpartida) - archivo de la web en formato .xls que coincide con NCM adaptado a Uruguay.
