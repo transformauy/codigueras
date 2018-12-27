@@ -1,43 +1,19 @@
 \name{codiguera_ncm}
 \alias{codiguera_ncm}
-%- Also NEED an '\alias' for EACH other topic documented here.
 \title{
 Codiguera NCM
-%%  ~~function to do ... ~~
 }
 \description{
-%%  ~~ A concise (1-5 lines) description of what the function does. ~~
+Codiguera de productos según Nomenclatura Común Mercosur. En formato wide, cada observación corresponde a un producto según código ncm a 8 dígitos, con su correspondiente descripción y desagregado por cada subgrupo previo (a 7, 6, 5 y 4 dígitos respectivamente). La codiguera en formato long, puede filtrarse por variable (seccion, capitulo, ncm_4, ncm_5, ncm_6, ncm_7 y ncm_8) para obtener la codiguera según la desagregación deseada.
 }
 \usage{
 codiguera_ncm()
 codiguera_ncm_wide()
 codiguera_ncm_long()
 }
-%- maybe also 'usage' for other objects documented here.
-\details{
-%%  ~~ If necessary, more details than the description above ~~
-}
-\value{
-%%  ~Describe the value returned
-%%  If it is a LIST, use
-%%  \item{comp1 }{Description of 'comp1'}
-%%  \item{comp2 }{Description of 'comp2'}
-%% ...
-}
-\references{
-%% ~put references to the literature/web site here ~
-}
+
 \author{
 Observatorio Productivo - Transforma Uruguay
-}
-\note{
-%%  ~~further notes~~
-}
-
-%% ~Make other sections like Warning with \section{Warning }{....} ~
-
-\seealso{
-%% ~~objects to See Also as \code{\link{help}}, ~~~
 }
 \examples{
 
@@ -88,7 +64,3 @@ ncm_base \%>\%
               desc.ncm_5, ncm_6, desc.ncm_6, ncm_7, desc.ncm_7, ncm_8, desc.ncm_8)
   }
 }
-% Add one or more standard keywords, see file 'KEYWORDS' in the
-% R documentation directory.
-\keyword{ ~kwd1 }% use one of  RShowDoc("KEYWORDS")
-\keyword{ ~kwd2 }% __ONLY ONE__ keyword per line
