@@ -1,7 +1,7 @@
 
 # Función para asignar clasificación TU
 
-asigna.clasif_tu <- function(){
+asigna.clasif_tu <- function(df){
   df %>%
     mutate(clasif.tu = case_when((is.na(desc.uyxxi) == TRUE & capitulo == "01") ~ "Los demás animales vivos",
                                  (is.na(desc.uyxxi) == TRUE & capitulo == "04") ~ "Los demás productos comestibles de origen animal",
