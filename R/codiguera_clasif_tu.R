@@ -18,7 +18,8 @@ library(dplyr)
 library(stringr)
 
 # Helpers
-source(system.file(package = 'codigueras', 'data-raw', 'asigna.seccion.r'))
+parse(file.path('data-raw', 'asigna.seccion.R') )
+# source(system.file(package = 'codigueras', 'data-raw', 'asigna.seccion.r'))
 # file.path('data-raw', 'asigna.seccion.R') %>% source()
 # file.path('data-raw', 'capitulos.productos.R') %>% source()
 # file.path('data-raw', 'secciones.productos.R') %>% source()
