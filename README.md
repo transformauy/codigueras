@@ -31,7 +31,7 @@ codiguera_clasif_tu()
 
 ## Instalación
 ```
-devtools::install_github('vburguete/codigueras')
+devtools::install_github('transformauy/codigueras')
 library(codigueras)
 ```
 
