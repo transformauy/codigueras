@@ -8,7 +8,6 @@
 #' @import readxl dplyr stringr
 #'
 #' @examples
-#' clasif.uyxxi()
 #' codiguera_clasif_tu()
 
 
@@ -18,21 +17,9 @@ library(dplyr)
 library(stringr)
 
 
-# import Codiguera de grupos según clasificación de Uruguay XXI
-clasif.uyxxi <- function() {
-  file.path('data-raw', 'Clasificación Uruguay XXI.xlsx') %>%
-    read_xlsx %>%
-    rename(ncm_4 = NCM4,
-           ncm_6 = NCM6,
-           desc.uyxxi = `Clasificación Uruxxi`) %>%
-    filter(is.na(desc.uyxxi) != TRUE) %>%
-    mutate(capitulo = str_sub(ncm_4, 1, 2))
-}
-
-
 # Genera df completo de productos - Clasificación TU (interna)
 codiguera_clasif_tu <- function(){
-  clasif.uyxxi() %>%
+  clasif.uyxxi %>%
     full_join(NCM %>%
                 asigna.seccion() %>%
                 left_join(secciones.productos,
