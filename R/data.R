@@ -225,7 +225,7 @@ NULL
 
 #' cnbcu.seccion
 #'
-#' Codiguera completa BCU desagregada por subsección, con descripción.
+#' Codiguera completa BCU desagregada por sección, con descripción.
 #'
 #' @format Un data-frame con cuatro variables: \code{desc.cnbcu.seccion}, \code{year}, \code{indice.seccion}
 #' y \code{cnbcu.seccion}.
