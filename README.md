@@ -28,6 +28,12 @@ Codiguera interna grupos de productos Transforma Uruguay, según clasificación 
 codiguera_clasif_tu()
 ```
 
+### - Codiguera CNBCU-CIIUS: 
+Codiguera, que incluye equivalencias entre códigos de actividad del BCU y Clasificación Industrial Internacional Uniforme Rev.3 y Rev.4. 
+```
+codiguera_cnbcu_ciius()
+```
+
 
 ## Instalación
 ```
@@ -57,3 +63,9 @@ Archivos disponibles en el paquete:
 - listado_ocupaciones: Listado Nacional de Denominaciones de Ocupaciones (INE).
 - NCM: Listado de productos Nomenclatura Común Mercosur.
 - ncm_base: Codiguera completa NCM adaptada a Uruguay.
+- ciiu4_ciiu3: Equivalencia entre Clasificación Industrial Internacional Uniforme Rev.3 y Rev.4.
+- cnbcu_subclase: Codiguera completa BCU con descripción y equivalencia ciiu3.
+- cnbcu_ciiu: Codiguera completa BCU con descripción y equivalencia ciiu3.
+- cnbcu.seccion: Codiguera completa BCU desagregada por sección, con descripción.
+- cnbcu.subseccion: Codiguera completa BCU desagregada por subsección, con descripción.
+- cnbcu.completo: Codiguera completa BCU desagregada por código de actividad (cnbcu), con descripción.
