@@ -182,3 +182,79 @@ NULL
 #' ncm_base
 "ncm_base"
 
+
+
+
+#' ciiu4_ciiu3
+#'
+#' Equivalencia entre Clasificación Industrial Internacional Uniforme Rev.3 y Rev.4.
+#'
+#' @format Un data-frame con dos variables: \code{ciiu3} y \code{ciiu4}.
+#' (\code{ciiu4_ciiu3} está desagregada en 440 relaciones ciiu3 - ciiu4)
+#' @examples
+#' ciiu4_ciiu3
+"ciiu4_ciiu3"
+
+
+
+#' cnbcu_subclase
+#'
+#' Codiguera completa BCU con descripción y equivalencia ciiu3.
+#'
+#' @format Un data-frame con tres variables: \code{cnbcu}, \code{denominacion.bcu} y \code{ciiu3}.
+#' (\code{cnbcu_subclase} está desagregada en 301 códigos de cnbcu, cada uno con su respectiva
+#'   descripción y equivalencia de Clasificación Industrial Uniforme Rev.3.)
+#' @examples
+#' cnbcu_subclase
+"cnbcu_subclase"
+
+
+
+#' cnbcu_ciiu
+#'
+#' Codiguera completa BCU con descripción y equivalencia ciiu3.
+#'
+#' @format Un data-frame con cuatro variables: \code{CATEGORIA}, \code{`CODIGO CNBCU`}, \code{`DENOMINACION CNBCU`}
+#' y \code{`CODIGO CIIU Rev.3`}.
+#' (\code{cnbcu_ciiu} está desagregada en 177 códigos de actividad del BCU, cada uno con su respectiva descripción y
+#'   correspondencia CIIU Rev.3)
+#' @examples
+#' cnbcu_ciiu
+"cnbcu_ciiu"
+
+
+#' cnbcu.seccion
+#'
+#' Codiguera completa BCU desagregada por subsección, con descripción.
+#'
+#' @format Un data-frame con cuatro variables: \code{desc.cnbcu.seccion}, \code{year}, \code{indice.seccion}
+#' y \code{cnbcu.seccion}.
+#' (\code{cnbcu.seccion} está desagregada en 16 códigos de secciones de actividad del BCU, cada uno con su respectiva descripción para
+#' 12 años de estudio)
+#' @examples
+#' cnbcu.seccion
+"cnbcu.seccion"
+
+
+#' cnbcu.subseccion
+#'
+#' Codiguera completa BCU desagregada por subsección, con descripción.
+#'
+#' @format Un data-frame con cuatro variables: \code{desc.cnbcu.subseccion}, \code{year}, \code{indice.subseccion}
+#' y \code{cnbcu.subseccion}.
+#' (\code{cnbcu.subseccion} está desagregada en 852 códigos de subsecciones de actividad del BCU, cada uno con su respectiva descripción y
+#'   correspondencia CIIU Rev.3)
+#' @examples
+#' cnbcu.subseccion
+"cnbcu.subseccion"
+
+
+#' cnbcu.completo
+#'
+#' Codiguera completa BCU desagregada por código de actividad (cnbcu), con descripción.
+#'
+#' @format Un data-frame con cuatro variables: \code{desc.cnbcu}, \code{year}, \code{indice} y \code{cnbcu}.
+#' (\code{cnbcu.completo} está desagregada en 1044 códigos de actividad del BCU, cada uno con su respectiva descripción)
+#' @examples
+#' cnbcu.completo
+"cnbcu.completo"

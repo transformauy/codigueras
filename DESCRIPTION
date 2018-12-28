@@ -1,11 +1,15 @@
 Package: codigueras
 Type: Package
-Title: What the Package Does (Title Case)
+Date: Diciembre 2018
+Title: Paquete para cargar codigueras
 Version: 0.1.0
-Author: Who wrote it
-Maintainer: The package maintainer <yourself@somewhere.net>
-Description: More about what it does (maybe more than one line)
-    Use four spaces when indenting paragraphs within the Description.
+Author: Observatorio Productivo - Transforma Uruguay
+Maintainer: The package maintainer <vburguete@transformauruguay.gub.uy>
+Description: Paquete para cargar codigueras, contiene codigueras de
+     codiguera de actividad CIIU, codiguera de denominaciones de ocupaciones CIUO, 
+     codiguera de productos según Nomenclatura Común Mercosur - NCM, codiguera 
+     interna de grupos de productos clasif_tu, codiguera de equivalencia códigos de 
+     actividad BCU con códigos de Clasificación Industrial Uniforme Rev.3 y Rev.4 - cnbcu_ciius)
 License: What license is it under?
 Encoding: UTF-8
 Depends:
