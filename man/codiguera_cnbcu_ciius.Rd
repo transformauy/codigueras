@@ -1,13 +1,13 @@
 \name{codiguera_cnbcu_ciiius}
 \alias{codiguera_cnbcu_ciiius}
 \title{
-Codiguera
+Codiguera CNBCU - CIIUS
 }
 \description{
 Función para cargar codiguera de CNBCU - CIIU.
 }
 \usage{
-codiguera_cnbcu_ciiius(x)
+codiguera_cnbcu_ciius(x)
 }
 \arguments{
   \item{x}{

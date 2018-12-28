@@ -9,7 +9,8 @@ Description: Paquete para cargar codigueras, contiene codigueras de
      codiguera de actividad CIIU, codiguera de denominaciones de ocupaciones CIUO, 
      codiguera de productos según Nomenclatura Común Mercosur - NCM, codiguera 
      interna de grupos de productos clasif_tu, codiguera de equivalencia códigos de 
-     actividad BCU con códigos de Clasificación Industrial Uniforme Rev.3 y Rev.4 - cnbcu_ciius)
+     actividad BCU con códigos de Clasificación Industrial Internacional Uniforme 
+     Rev.3 y Rev.4 - cnbcu_ciius)
 License: What license is it under?
 Encoding: UTF-8
 Depends:
