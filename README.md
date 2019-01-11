@@ -59,12 +59,12 @@ Archivos disponibles en el paquete:
 - ciiu: Codiguera CIIU INE.
 - capitulos.productos: Capítulos de productos.
 - secciones.productos: Secciones de productos.
-- seccion: Secciones de actividad.
-- division: Divisiones de actividad.
+- seccion: Secciones de actividad (NO COMPLETA, utilizar función cargar_seccion() para tener la codiguera completa).
+- division: Divisiones de actividad (NO COMPLETA, utilizar función cargar_division() para tener la codiguera completa).
 - seccion_division: Secciones de actividad con sus correspondientes divisiones.
-- grupo: Grupos de actividad.
-- clase: Clases de actividad.
-- subclase: Subclases de actividad.
+- grupo: Grupos de actividad (NO COMPLETA, utilizar función cargar_grupo() para tener la codiguera completa).
+- clase: Clases de actividad (NO COMPLETA, utilizar función cargar_clase() para tener la codiguera completa).
+- subclase: Subclases de actividad (NO COMPLETA, utilizar función cargar_subclase() para tener la codiguera completa).
 - listado_ocupaciones: Listado Nacional de Denominaciones de Ocupaciones (INE).
 - NCM: Listado de productos Nomenclatura Común Mercosur.
 - ncm_base: Codiguera completa NCM adaptada a Uruguay.
