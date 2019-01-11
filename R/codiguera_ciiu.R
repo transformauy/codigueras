@@ -46,3 +46,35 @@ codiguera_ciiu <- function(df){
     unique
 }
 
+
+cargar_seccion <- function(df){
+  codiguera_ciiu() %>%
+    transmute(seccion, desc_seccion) %>%
+    distinct()
+  }
+
+cargar_division <- function(df){
+  codiguera_ciiu() %>%
+    transmute(division, desc_division) %>%
+    distinct()
+}
+
+cargar_grupo <- function(df){
+  codiguera_ciiu() %>%
+    transmute(grupo, desc_grupo) %>%
+    distinct()
+}
+
+cargar_clase <- function(df){
+  codiguera_ciiu() %>%
+    transmute(clase, desc_clase) %>%
+    distinct()
+}
+
+cargar_subclase <- function(df){
+  codiguera_ciiu() %>%
+    transmute(subclase, desc_subclase) %>%
+    distinct()
+}
+
+
