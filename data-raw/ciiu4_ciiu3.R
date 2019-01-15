@@ -6,7 +6,7 @@ library(stringr)
 library(janitor)
 
 
-correspondencia_ciiu4_ciiu3 <- file.path('data-raw', 'Correspondencia_ciiu4_a_ciiu3_válida.xls') %>%
+ciiu4_ciiu3 <- file.path('data-raw', 'Correspondencia_ciiu4_a_ciiu3_válida.xls') %>%
   read_excel(col_names = TRUE) %>%
   clean_names() %>%
   transmute(ciiu3 = str_pad(ciiu3ine, width = 4, side = "left", pad = "0"),
@@ -14,8 +14,8 @@ correspondencia_ciiu4_ciiu3 <- file.path('data-raw', 'Correspondencia_ciiu4_a_ci
             ciiu4 = str_sub(ciiu4_5, 1, 4),
             descripcion) %>%
   filter(is.na(ciiu3) != TRUE)
-# save(correspondencia_ciiu4_ciiu3, file = 'data/correspondencia_ciiu4_ciiu3.rda')
-usethis::use_data(correspondencia_ciiu4_ciiu3, overwrite = TRUE)
+# save(ciiu4_ciiu3, file = 'data/ciiu4_ciiu3.rda')
+usethis::use_data(ciiu4_ciiu3, overwrite = TRUE)
 
 
 # Para validar este listado, se genera planilla con el pdf TABLA DE CORRESPONDENCIA CIIU REV.4 ADAPTADA A URUGUAY CON CIIU REV.3
@@ -28,7 +28,7 @@ usethis::use_data(correspondencia_ciiu4_ciiu3, overwrite = TRUE)
 #          ciiu_3 = str_pad(ciiu_3, 4, "left", "0")) %>%
 #   filter(is.na(ciiu_3) != TRUE)
 #
-# valida <- correspondencia_ciiu4_ciiu3 %>%
+# valida <- ciiu4_ciiu3 %>%
 #   transmute(ciiu_3 = ciiu3) %>%
 #   anti_join(listado_INE_ciiu4_ciiu3 %>%
 #               select(ciiu_3))
