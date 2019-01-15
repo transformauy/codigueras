@@ -5,7 +5,7 @@
 #' @description Función para cargar codiguera de correspondencia de códigos de actividad de CIIU Rev. 4 a CIIU Rev.3    Clasificación Industrial Internacional Uniforme.
 #' @keywords Clases de actividad
 #' @export
-#' @import tidyr dplyr
+#' @import tidyr dplyr stringr, janitor
 #'
 #' @examples
 #' cargar_ciiu4_ciiu3()
