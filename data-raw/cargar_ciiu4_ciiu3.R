@@ -1,15 +1,3 @@
-#' Cargar Correspondencia CIIU4 - CIIU3
-#'
-#' Función para cargar codiguera de correspondencia de CIIU Rev. 4 a CIIU Rev. 3.
-#' @title Correspondencia CIIU_Rev.4 - CIIU Rev.3
-#' @description Función para cargar codiguera de correspondencia de códigos de actividad de CIIU Rev. 4 a CIIU Rev.3    Clasificación Industrial Internacional Uniforme.
-#' @keywords Clases de actividad
-#' @export
-#' @import tidyr dplyr stringr, janitor
-#'
-#' @examples
-#' cargar_ciiu4_ciiu3()
-
 
 # Librerías
 library(dplyr)
@@ -28,3 +16,5 @@ cargar_ciiu4_ciiu3 <- function(df){
               descripcion) %>%
     filter(is.na(ciiu3) != TRUE)
 }
+# save(cargar_ciiu4_ciiu3, file = 'data/cargar_ciiu4_ciiu3.rda')
+usethis::use_data(cargar_ciiu4_ciiu3, overwrite = TRUE)
