@@ -261,7 +261,7 @@ NULL
 
 
 
-#' cargar_ciiu4_ciiu3
+#' correspondencia_ciiu4_ciiu3
 #'
 #' Codiguera de correspondencia de CIIU Rev. 4 a CIIU Rev. 3.
 #'
@@ -269,6 +269,6 @@ NULL
 #' (\code{ciiu4_5} está desagregada en 787 códigos de subclase de actividad, cada uno con su respectiva descripción y
 #'     correspondencia con \code{ciiu4} y \code{ciiu3})
 #' @examples
-#' cargar_ciiu4_ciiu3
-"cargar_ciiu4_ciiu3"
+#' correspondencia_ciiu4_ciiu3
+"correspondencia_ciiu4_ciiu3"
 
