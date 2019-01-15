@@ -13,6 +13,12 @@ cargar_clase()
 cargar_subclase()
 ```
 
+### - Codiguera Correspondencia CIIU Rev. 4 - CIIU Rev.3
+Codiguera de ramas de actividad según Clasificación Industrial Internacional Uniforme Rev.4 (CIIU) y su correspondencia con la Clasificación Industrial Internacional Uniforme Rev.3, en base al archivo de referencia del INE "Correspondencia_ciiu4_a_ciiu3_válida.xls".
+```
+cargar_ciiu4_ciiu3()
+```
+
 ### - Codiguera CIUO
 Codiguera de ocupaciones, según archivo de referencia del INE "LISTADO NACIONAL DE DENOMINACIONES DE OCUPACIONES (CIUO).pdf"
 ```
