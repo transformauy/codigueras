@@ -16,3 +16,20 @@ correspondencia_ciiu4_ciiu3 <- file.path('data-raw', 'Correspondencia_ciiu4_a_ci
   filter(is.na(ciiu3) != TRUE)
 # save(correspondencia_ciiu4_ciiu3, file = 'data/correspondencia_ciiu4_ciiu3.rda')
 usethis::use_data(correspondencia_ciiu4_ciiu3, overwrite = TRUE)
+
+
+# Para validar este listado, se genera planilla con el pdf TABLA DE CORRESPONDENCIA CIIU REV.4 ADAPTADA A URUGUAY CON CIIU REV.3
+# https://www.pdftoexcel.com/
+
+# listado_INE_ciiu4_ciiu3 <- file.path('data-raw', 'CORRESPONDENCIA CIUU4 A CIUU3.xlsx') %>%
+#   read_excel(col_names = TRUE) %>%
+#   clean_names() %>%
+#   mutate(ciiu_4 = str_replace_all(ciiu_4, ",", ""),
+#          ciiu_3 = str_pad(ciiu_3, 4, "left", "0")) %>%
+#   filter(is.na(ciiu_3) != TRUE)
+#
+# valida <- correspondencia_ciiu4_ciiu3 %>%
+#   transmute(ciiu_3 = ciiu3) %>%
+#   anti_join(listado_INE_ciiu4_ciiu3 %>%
+#               select(ciiu_3))
+

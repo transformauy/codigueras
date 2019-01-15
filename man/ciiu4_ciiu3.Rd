@@ -3,16 +3,24 @@
 \docType{data}
 \name{ciiu4_ciiu3}
 \alias{ciiu4_ciiu3}
-\title{ciiu4_ciiu3}
-\format{Un data-frame con dos variables: \code{ciiu3} y \code{ciiu4}.
-(\code{ciiu4_ciiu3} está desagregada en 440 relaciones ciiu3 - ciiu4)}
+\title{Listado correspondencia CIIU Rev.4 con CIIU Rev.3 del INE}
+\format{Un data-frame con cuatro variables:
+\describe{
+\item{\code{ciiu3}}{Clase de actividad CIIU Rev.3}
+\item{\code{ciiu4_5}}{Subclase de actividad CIIU Rev.4}
+\item{\code{ciiu4}}{Clase de actividad CIIU Rev.4}
+\item{\code{descripcion}}{descripción de \code{ciiu4_5}}
+}
+(\code{ciiu4_5} está desagregada
+  787 códigos de subclase de actividad, cada uno con su respectiva descripción y
+  correspondencia con \code{ciiu4} y \code{ciiu3}).}
 \usage{
 ciiu4_ciiu3
 }
 \description{
-Equivalencia entre Clasificación Industrial Internacional Uniforme Rev.3 y Rev.4.
+Análisis correspondencia CIIU Rev.4 con CIIU Rev.3 del INE.
 }
 \examples{
-ciiu4_ciiu3
+  ciiu4_ciiu3
 }
 \keyword{datasets}

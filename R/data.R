@@ -184,19 +184,6 @@ NULL
 
 
 
-
-#' ciiu4_ciiu3
-#'
-#' Equivalencia entre Clasificación Industrial Internacional Uniforme Rev.3 y Rev.4.
-#'
-#' @format Un data-frame con dos variables: \code{ciiu3} y \code{ciiu4}.
-#' (\code{ciiu4_ciiu3} está desagregada en 440 relaciones ciiu3 - ciiu4)
-#' @examples
-#' ciiu4_ciiu3
-"ciiu4_ciiu3"
-
-
-
 #' cnbcu_subclase
 #'
 #' Codiguera completa BCU con descripción y equivalencia ciiu3.
@@ -261,7 +248,7 @@ NULL
 
 
 
-#' correspondencia_ciiu4_ciiu3
+#' ciiu4_ciiu3
 #'
 #' Codiguera de correspondencia de CIIU Rev. 4 a CIIU Rev. 3.
 #'
@@ -269,6 +256,6 @@ NULL
 #' (\code{ciiu4_5} está desagregada en 787 códigos de subclase de actividad, cada uno con su respectiva descripción y
 #'     correspondencia con \code{ciiu4} y \code{ciiu3})
 #' @examples
-#' correspondencia_ciiu4_ciiu3
-"correspondencia_ciiu4_ciiu3"
+#' ciiu4_ciiu3
+"ciiu4_ciiu3"
 
