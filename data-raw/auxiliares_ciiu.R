@@ -1,25 +1,39 @@
 
 # Cargar base del ciiu a 5 dígitos, codiguera adaptada a Uruguay por el INE
 cargar_ciiu_INE <- file.path('data-raw', 'EnricoCiiu.xlsx') %>%
-    read_excel(col_names = TRUE) %>% rename_all(tolower) %>%
-    rename(seccion = sección, descripcion = descripción) %>%
-    filter(descripcion != "Otras actividades del servicio de alimentación") %>%
-    mutate(ciiu_4 = if_else(ciiu_4 == 1010, 10100,                                                 # Código incorrecto
-                            if_else(ciiu_4 == 1919, 1619,                                          # Corrección confirmada por INE
-                                    if_else(ciiu_4 == 7700, 77000,                                 # Falta cero, mal reportada
-                                            if_else(ciiu_4 == 74300, 84300,                        # Código incorrecto
-                                                    ciiu_4))))) %>%
-    filter(seccion != "V", ciiu_4 != 68100) %>%
-    add_row(seccion = c("B", "I", rep("L", 3)),
-            ciiu_4 = c(07100, 56290, 68100, 68101, 68109),
-            descripcion = c("Extracción de minerales de hierro",
-                            "Otras actividades del servicio de alimentación",
-                            "Actividades inmobiliarias con bienes propios o arrendados",
-                            "Propiedad y explotación de bienes inmobiliarios propios no rurales",
-                            "Otras actividades con bienes propios o arrendados")) %>%
-    mutate(ciiu = str_pad(ciiu_4, 5, "left", "0"))
-devtools::use_data(cargar_ciiu_INE, overwrite = TRUE)
+  read_excel(col_names = TRUE) %>%
+  rename_all(tolower) %>%
+  rename(seccion = sección, descripcion = descripción) %>%
+  filter(descripcion != "Otras actividades del servicio de alimentación") %>%
+  mutate(ciiu_4 = if_else(ciiu_4 == 1010, 10100,                                                 # Código incorrecto
+                          if_else(ciiu_4 == 1919, 1619,                                          # Corrección confirmada por INE
+                                  if_else(ciiu_4 == 7700, 77000,                                 # Falta cero, mal reportada
+                                          if_else(ciiu_4 == 74300, 84300,                        # Código incorrecto
+                                                  ciiu_4))))) %>%
+  filter(seccion != "V", ciiu_4 != 68100) %>%
+  add_row(seccion = c("B", "I", rep("L", 3)),
+          ciiu_4 = c(07100, 56290, 68100, 68101, 68109),
+          descripcion = c("Extracción de minerales de hierro",
+                          "Otras actividades del servicio de alimentación",
+                          "Actividades inmobiliarias con bienes propios o arrendados",
+                          "Propiedad y explotación de bienes inmobiliarios propios no rurales",
+                          "Otras actividades con bienes propios o arrendados")) %>%
+  mutate(ciiu = str_pad(ciiu_4, 5, "left", "0"))
 
+correcciones_ciiu <- file.path('data-raw', 'correcciones_ciiu.xlsx') %>%
+  read_excel(col_names = TRUE) %>%
+  janitor::clean_names() %>%
+  transmute(ciiu = ciiu_4, descripcion) %>%
+  mutate(ciiu = str_pad(ciiu, 5, "left", "0"),
+         ciiu_4 = as.numeric(ciiu)) %>%
+  left_join(cargar_ciiu_INE %>% select(-descripcion, -ciiu_4), by = "ciiu") %>%
+  mutate(seccion = case_when(ciiu_4 == "0320" ~ "A", TRUE ~ seccion))
+
+cargar_ciiu_INE <- cargar_ciiu_INE %>%
+  filter(!ciiu %in% correcciones_ciiu$ciiu) %>%
+  full_join(correcciones_ciiu)
+
+devtools::use_data(cargar_ciiu_INE, overwrite = TRUE)
 
 cargar_ciiu_INE_anexo <- file.path('data-raw', 'EnricoCiiu.xlsx') %>%
     read_excel(col_names = TRUE) %>% rename_all(tolower) %>%
