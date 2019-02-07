@@ -147,8 +147,8 @@ grupo <- ciiu %>% select(division, grupo, descripcion_grupo) %>%
                                                 "37", "39", "41", "61", "62", "75",                #  según archivo "CIIU-Rev-4_Notas-explicativas.pdf"
                                                 "90", "91", "92", "96", "97", "99")),
             by = "division") %>%
-  mutate(desc_grupo = ifelse(is.na(descripcion_grupo) == TRUE,
-                             desc_division, descripcion_grupo)) %>%
+  mutate(desc_grupo = if_else(is.na(descripcion_grupo) == TRUE, desc_division,
+                              if_else(grupo == "651", "Seguros", descripcion_grupo))) %>%
   select(grupo, desc_grupo) %>%
   filter(is.na(desc_grupo) != TRUE) %>%
   unique %>%
@@ -163,7 +163,7 @@ clase <- ciiu %>% select(grupo, clase, descripcion_clase, subclase) %>%
                                   "462", "463", "750", "900", "920", "970", "990")),               #  según archivo "CIIU-Rev-4_Notas-explicativas.pdf"
             by = "grupo") %>%
   mutate(clase = if_else(is.na(desc_grupo) != TRUE, str_c(grupo, "0"), clase)) %>%
-  mutate(desc_clase = ifelse(is.na(descripcion_clase) == TRUE,
+  mutate(desc_clase = if_else(is.na(descripcion_clase) == TRUE,
                              desc_grupo, descripcion_clase)) %>%
   select(clase, desc_clase) %>%
   mutate(clase =                                                                                   # 46310 corresponde a la décima clase del grupo 463
@@ -181,7 +181,7 @@ subclase <- ciiu %>% select(clase, subclase, descripcion_subclase) %>%
   mutate(subclase =
            if_else(is.na(desc_clase) != TRUE, str_c(clase, "0"), subclase)) %>%
   mutate(desc_subclase =
-           ifelse(is.na(descripcion_subclase) == TRUE, desc_clase, descripcion_subclase)) %>%
+           if_else(is.na(descripcion_subclase) == TRUE, desc_clase, descripcion_subclase)) %>%
   select(subclase, desc_subclase) %>%
   filter(is.na(desc_subclase) != TRUE) %>%
   unique %>%
