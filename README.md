@@ -79,6 +79,6 @@ Archivos disponibles en el paquete:
 
 
 ACTUALIZACIÓN 2019:
-06/02: Se genera archivo para importar correcciones, se guarda en 'codigueras/data-raw'
-07/02: Se actualiza el archivo: 'codigueras/data-raw/auxiliares_ciiu.R'
-       Se corre 'codigueras/data-raw/auxiliares_ciiu.R' y se sobrescriben los .rda
+- 06/02: Se genera archivo para importar correcciones, se guarda en 'codigueras/data-raw'
+- 07/02: Se actualiza el archivo: 'codigueras/data-raw/auxiliares_ciiu.R'
+         Se corre 'codigueras/data-raw/auxiliares_ciiu.R' y se sobrescriben los .rda
