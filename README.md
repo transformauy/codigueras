@@ -75,3 +75,10 @@ Archivos disponibles en el paquete:
 - cnbcu.subseccion: Codiguera completa BCU desagregada por subsección, con descripción.
 - cnbcu.completo: Codiguera completa BCU desagregada por código de actividad (cnbcu), con descripción.
 - correspondencia_ciiu4_ciiu3: Correspondencia entre Clasificación Industrial Internacional Uniforme Rev.3 y Rev.4.
+
+
+
+ACTUALIZACIÓN 2019:
+06/02: Se genera archivo para importar correcciones, se guarda en 'codigueras/data-raw'
+07/02: Se actualiza el archivo: 'codigueras/data-raw/auxiliares_ciiu.R'
+       Se corre 'codigueras/data-raw/auxiliares_ciiu.R' y se sobrescriben los .rda
