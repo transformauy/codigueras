@@ -1,6 +1,6 @@
 Package: codigueras
 Type: Package
-Date: Diciembre 2018
+Date: Marzo 2018
 Title: Paquete para cargar codigueras
 Version: 0.1.0
 Author: Observatorio Productivo - Transforma Uruguay
@@ -13,7 +13,5 @@ Description: Paquete para cargar codigueras, contiene codigueras de
      Rev.3 y Rev.4 - cnbcu_ciius)
 License: What license is it under?
 Encoding: UTF-8
-Depends:
- readr, readxl, dplyr, stringr, tibble, janitor
 LazyData: true
 RoxygenNote: 6.1.0.9000
