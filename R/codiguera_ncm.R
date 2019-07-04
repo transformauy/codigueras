@@ -22,8 +22,20 @@ library(tibble)
 codiguera_ncm <- function(){
 
   ncm_base %>%
-    filter(variable == 'ncm_8') %>%
-    transmute(ncm_8 = codigo, desc.ncm_8 = descripcion) %>%
+    filter(variable == 'ncm_10') %>%
+    transmute(ncm_10 = codigo, desc.ncm_10 = descripcion) %>%
+    mutate(ncm_9 = str_sub(ncm_10, 1, 9)) %>%
+
+    left_join(ncm_base %>%
+                filter(variable == 'ncm_9') %>%
+                transmute(ncm_9 = codigo, desc.ncm_9 = descripcion),
+              by = 'ncm_9') %>%
+    mutate(ncm_8 = str_sub(ncm_9, 1, 8)) %>%
+
+    left_join(ncm_base %>%
+                filter(variable == 'ncm_8') %>%
+                transmute(ncm_8 = codigo, desc.ncm_8 = descripcion),
+              by = 'ncm_8') %>%
     mutate(ncm_7 = str_sub(ncm_8, 1, 7)) %>%
 
     left_join(ncm_base %>%
@@ -62,25 +74,40 @@ codiguera_ncm <- function(){
                 transmute(seccion = codigo, desc.secc = descripcion),
               by = 'seccion') %>%
     transmute(seccion, desc.secc, capitulo, desc.cap, ncm_4, desc.ncm_4, ncm_5,
-              desc.ncm_5, ncm_6, desc.ncm_6, ncm_7, desc.ncm_7, ncm_8, desc.ncm_8)
+              desc.ncm_5, ncm_6, desc.ncm_6, ncm_7, desc.ncm_7, ncm_8, desc.ncm_8,
+              ncm_9, desc.ncm_9, ncm_10, desc.ncm_10)
 }
 
 
 # Función para cargar codiguera completa: FORMATO WIDE
-# -------------------------------------------------------------------------------------------------------------------------------------------------------------------
-# seccion      desc.secc    capitulo      desc.cap    ncm_4    desc.ncm_4    ncm_5   desc.ncm_5     ncm_6    desc.ncm_6    ncm_7    desc.ncm_7    ncm_8    desc.ncm_8
-# -------------------------------------------------------------------------------------------------------------------------------------------------------------------
-#       I    Animales...          01   Animales...     0101           ...    01012          ...    010121           ...   0101210         ...  01012100           ...
-#      II   Productos...          06    Plantas...     0601           ...    06011          ...    060110           ...   0601100         ...  06011000           ...
-# -------------------------------------------------------------------------------------------------------------------------------------------------------------------
+# -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+# seccion      desc.secc  capitulo      desc.cap    ncm_4  desc.ncm_4    ncm_5  desc.ncm_5   ncm_6  desc.ncm_6     ncm_7  desc.ncm_7    ncm_8     desc.ncm_8       ncm_9  desc.ncm_9      ncm_10  desc.ncm_10
+# -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+#       I    Animales...        01   Animales...     0101         ...    01012         ...  010121         ...   0101210         ...   01012100          ...   010121000         ...  0101210000          ...
+#      II   Productos...        06    Plantas...     0601         ...    06011         ...  060110         ...   0601100         ...   06011000          ...   060110000         ...  0601100000          ...
+# -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 codiguera_ncm_wide <- function(){
+
   ncm_base %>%
-    filter(variable == 'ncm_8') %>%                                                                # Empieza por mayor desagregación ncm a 8 dígitos
-    transmute(ncm_8 = codigo, desc.ncm_8 = descripcion) %>%
-    mutate(ncm_7 = str_sub(ncm_8, 1, 7)) %>%
+    filter(variable == 'ncm_10') %>%                                                               # Empieza por mayor desagregación ncm a 10 dígitos
+    transmute(ncm_10 = codigo, desc.ncm_10 = descripcion) %>%
+    mutate(ncm_9 = str_sub(ncm_10, 1, 9)) %>%
 
     left_join(
+      ncm_base %>%
+        filter(variable == 'ncm_9') %>%                                                            # Agrega ncm a 9 dígitos
+        transmute(ncm_9 = codigo, desc.ncm_9 = descripcion),
+      by = 'ncm_9') %>%
+    mutate(ncm_8 = str_sub(ncm_9, 1, 8)) %>%
+
+    left_join(ncm_base %>%
+                filter(variable == 'ncm_8') %>%                                                    # Agrega ncm a 8 dígitos
+                transmute(ncm_8 = codigo, desc.ncm_8 = descripcion),
+              by = 'ncm_8') %>%
+    mutate(ncm_7 = str_sub(ncm_8, 1, 7)) %>%
+
+  left_join(
       ncm_base %>%
         filter(variable == 'ncm_7') %>%                                                            # Agrega ncm a 7 dígitos
         transmute(ncm_7 = codigo, desc.ncm_7 = descripcion),
@@ -121,7 +148,8 @@ codiguera_ncm_wide <- function(){
     asigna.seccion() %>% mutate(seccion = as.character(seccion)) %>%                               # Agrega sección según df "secciones.productos"
     left_join(secciones.productos %>%
                 mutate(seccion = as.character(seccion)) %>%
-                rename(desc.secc = descripcion.seccion),
+                select(desc.secc = descripcion.seccion,
+                       everything()),
               by = "seccion") %>%
 
     # left_join(
@@ -131,22 +159,27 @@ codiguera_ncm_wide <- function(){
     #   by = 'seccion') %>%
 
     transmute(seccion, desc.secc, capitulo, desc.cap, ncm_4, desc.ncm_4, ncm_5,                    # Ordena variables
-              desc.ncm_5, ncm_6, desc.ncm_6, ncm_7, desc.ncm_7, ncm_8, desc.ncm_8) %>%
+              desc.ncm_5, ncm_6, desc.ncm_6, ncm_7, desc.ncm_7, ncm_8, desc.ncm_8,
+              ncm_9, desc.ncm_9, ncm_10, desc.ncm_10) %>%
 
-    mutate(desc.cap = str_replace_all(desc.cap, pattern = "- ", ""),                               # elimina guiones de las descripciones de las partidas de 4, 5, 6, 7 y 8 dígitos
-           desc.ncm_4 = str_replace_all(desc.ncm_4, pattern = "-+", ""),
-           desc.ncm_5 = str_replace_all(desc.ncm_5, pattern = "-+", ""),
-           desc.ncm_6 = str_replace_all(desc.ncm_6, pattern = "-+", ""),
-           desc.ncm_7 = str_replace_all(desc.ncm_7, pattern = "-+", ""),
-           desc.ncm_8 = str_replace_all(desc.ncm_8, pattern = "-+", "")) %>%
+    mutate(desc.cap    = str_replace_all(desc.cap,    pattern = "- ", ""),                         # elimina guiones de las descripciones de las partidas de 4, 5, 6, 7, 8, 9 y 10 dígitos
+           desc.ncm_4  = str_replace_all(desc.ncm_4,  pattern = "-+", ""),
+           desc.ncm_5  = str_replace_all(desc.ncm_5,  pattern = "-+", ""),
+           desc.ncm_6  = str_replace_all(desc.ncm_6,  pattern = "-+", ""),
+           desc.ncm_7  = str_replace_all(desc.ncm_7,  pattern = "-+", ""),
+           desc.ncm_8  = str_replace_all(desc.ncm_8,  pattern = "-+", ""),
+           desc.ncm_9  = str_replace_all(desc.ncm_9,  pattern = "-+", ""),
+           desc.ncm_10 = str_replace_all(desc.ncm_10, pattern = "-+", "")) %>%
 
-    mutate(descripcion_completa = str_c(na.omit(desc.secc), ' - ',
-                                        na.omit(desc.cap), ' - ',
-                                        na.omit(desc.ncm_4), ' - ',
-                                        na.omit(desc.ncm_5), ' - ',
-                                        na.omit(desc.ncm_6), ' - ',
-                                        na.omit(desc.ncm_7), ' - ',
-                                        na.omit(desc.ncm_8), ' - ')) %>%
+    mutate(descripcion_completa = str_c(ifelse(is.na(desc.secc) == TRUE, "", desc.secc),
+                                        ifelse(is.na(desc.cap) == TRUE, "", str_c(' - ', desc.cap)),
+                                        ifelse(is.na(desc.ncm_4) == TRUE, "", str_c(' - ', desc.ncm_4)),
+                                        ifelse(is.na(desc.ncm_5) == TRUE, "", str_c(' - ', desc.ncm_5)),
+                                        ifelse(is.na(desc.ncm_6) == TRUE, "", str_c(' - ', desc.ncm_6)),
+                                        ifelse(is.na(desc.ncm_7) == TRUE, "", str_c(' - ', desc.ncm_7)),
+                                        ifelse(is.na(desc.ncm_8) == TRUE, "", str_c(' - ', desc.ncm_8)),
+                                        ifelse(is.na(desc.ncm_9) == TRUE, "", str_c(' - ', desc.ncm_9)),
+                                        ifelse(is.na(desc.ncm_10) == TRUE, "", str_c(' - ', desc.ncm_10)))) %>%
 
     mutate(
       #desc.ncm_6 = case_when(str_detect(desc.ncm_5, pattern = ".*:$") == TRUE ~
@@ -159,10 +192,12 @@ codiguera_ncm_wide <- function(){
 
       desc.ncm_5 = str_replace_all(desc.ncm_5, pattern = ":$", "")) %>%
 
-    mutate(desc.ncm_7 = case_when(is.na(desc.ncm_7) == TRUE ~ desc.ncm_8, TRUE ~ desc.ncm_7),      # Completa descripciones faltantes
-           desc.ncm_6 = case_when(is.na(desc.ncm_6) == TRUE ~ desc.ncm_7, TRUE ~ desc.ncm_6),
-           desc.ncm_5 = case_when(is.na(desc.ncm_5) == TRUE ~ desc.ncm_6, TRUE ~ desc.ncm_5),
-           desc.ncm_4 = case_when(is.na(desc.ncm_4) == TRUE ~ desc.ncm_5, TRUE ~ desc.ncm_4)) %>%  #,
+    mutate(desc.ncm_9 = case_when(is.na(desc.ncm_9) == TRUE ~ desc.ncm_10, TRUE ~ desc.ncm_9),      # Completa descripciones faltantes
+           desc.ncm_8 = case_when(is.na(desc.ncm_8) == TRUE ~ desc.ncm_9,  TRUE ~ desc.ncm_8),
+           desc.ncm_7 = case_when(is.na(desc.ncm_7) == TRUE ~ desc.ncm_8,  TRUE ~ desc.ncm_7),
+           desc.ncm_6 = case_when(is.na(desc.ncm_6) == TRUE ~ desc.ncm_7,  TRUE ~ desc.ncm_6),
+           desc.ncm_5 = case_when(is.na(desc.ncm_5) == TRUE ~ desc.ncm_6,  TRUE ~ desc.ncm_5),
+           desc.ncm_4 = case_when(is.na(desc.ncm_4) == TRUE ~ desc.ncm_5,  TRUE ~ desc.ncm_4)) %>%  #,
     # desc.cap = str_replace_all(desc.cap, ".*(?<=\\n).*", "")) %>%                                # elimina notas de la descripción de los capítulos (ncm_base)
 
     # mutate(patron = str_c("SECCIÓN ", seccion, "- "),                                            # depura descripción de secciones (ncm_base)
@@ -214,6 +249,14 @@ codiguera_ncm_long <- function(){
             unique) %>%
 
     rbind(codiguera_ncm_wide() %>%
-            transmute(variable = "ncm_8", codigo = ncm_8, descripcion = desc.ncm_8, by = NA) %>%
+            transmute(variable = "ncm_8", codigo = ncm_8, descripcion = desc.ncm_8, by = ncm_9) %>%
+            unique) %>%
+
+    rbind(codiguera_ncm_wide() %>%
+            transmute(variable = "ncm_9", codigo = ncm_9, descripcion = desc.ncm_9, by = ncm_10) %>%
+            unique) %>%
+
+    rbind(codiguera_ncm_wide() %>%
+            transmute(variable = "ncm_10", codigo = ncm_10, descripcion = desc.ncm_10, by = NA) %>%
             unique)
 }
