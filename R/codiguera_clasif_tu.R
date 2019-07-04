@@ -5,32 +5,25 @@
 #' @description Función para cargar codiguera de clasificación de grupo de productos Transforma Uruguay.    A partir de codiguera de clasificación de productos de Uruguay XXI.
 #' @keywords clasif_tu
 #' @export
-#' @import readxl dplyr stringr
+#' @import
 #'
 #' @examples
 #' codiguera_clasif_tu()
 
-
-# Librerías
-library(readxl)
-library(dplyr)
-library(stringr)
-
-
 # Genera df completo de productos - Clasificación TU (interna)
 codiguera_clasif_tu <- function(){
   clasif.uyxxi %>%
-    full_join(NCM %>%
+    dplyr::full_join(NCM %>%
                 asigna.seccion() %>%
-                left_join(secciones.productos,
+                  dplyr::left_join(secciones.productos,
                           by = "seccion"),
               by = c("ncm_4", "capitulo")) %>%
-    left_join(capitulos.productos %>%
+    dplyr::left_join(capitulos.productos %>%
                 asigna.seccion() %>%
-                left_join(secciones.productos,
+                  dplyr::left_join(secciones.productos,
                           by = "seccion"),
               by = c("capitulo", "seccion", "descripcion.seccion"))  %>%
-    mutate(clasif.tu = dplyr::case_when((is.na(desc.uyxxi) == TRUE & capitulo == "01") ~ "Los demás animales vivos",
+    dplyr::mutate(clasif.tu = dplyr::case_when((is.na(desc.uyxxi) == TRUE & capitulo == "01") ~ "Los demás animales vivos",
                                         (is.na(desc.uyxxi) == TRUE & capitulo == "04") ~ "Los demás productos comestibles de origen animal",
                                         (is.na(desc.uyxxi) == TRUE & capitulo == "05") ~ "Los demás productos de origen animal",
                                         (is.na(desc.uyxxi) == TRUE & capitulo == "10" & ncm_4 %in% c("1002", "1004")) ~ descripcionNCM,
@@ -67,9 +60,9 @@ codiguera_clasif_tu <- function(){
                                         (is.na(desc.uyxxi) == TRUE & capitulo == "95") ~ "Juguetes, juegos y artículos para recreo o deporte",
                                         (is.na(desc.uyxxi) == TRUE) ~ descripcion.capitulo,
                                         TRUE ~ desc.uyxxi)) %>%
-    mutate(clasif.tu = case_when(ncm_4 == "4703" ~ "Celulosa",
+    dplyr::mutate(clasif.tu = case_when(ncm_4 == "4703" ~ "Celulosa",
                                  ncm_4 %in% c("2106", "3302") ~ "Concentrado de bebidas",
                                  clasif.tu == "Despojos y subproductos cárnicos (bovinos principalmente)" ~ "Despojos y subproductos cárnicos",
                                  TRUE ~ clasif.tu)) %>%
-    transmute(seccion, capitulo, ncm_4, ncm_6, clasif.tu)
+    dplyr::transmute(seccion, capitulo, ncm_4, ncm_6, clasif.tu)
 }

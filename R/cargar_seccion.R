@@ -5,20 +5,14 @@
 #' @description Función para cargar seccion de actividad de CIIU Rev. 4    Clasificación Industrial Internacional Uniforme.
 #' @keywords seccion
 #' @export
-#' @import tidyr dplyr
+#' @import
 #'
 #' @examples
 #' cargar_seccion()
 
-
-# Librerías
-library(tidyr)
-library(dplyr)
-
-
 # Cargar seccion a partir de codiguera completa
 cargar_seccion <- function(df){
   codiguera_ciiu() %>%
-    transmute(seccion, desc_seccion) %>%
-    distinct()
+    dplyr::transmute(seccion, desc_seccion) %>%
+    dplyr::distinct()
 }

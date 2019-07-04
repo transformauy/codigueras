@@ -5,20 +5,15 @@
 #' @description Función para cargar grupo de actividad de CIIU Rev. 4    Clasificación Industrial Internacional Uniforme.
 #' @keywords grupo
 #' @export
-#' @import tidyr dplyr
+#' @import
 #'
 #' @examples
 #' cargar_grupo()
 
 
-# Librerías
-library(tidyr)
-library(dplyr)
-
-
 # Cargar grupo a partir de codiguera completa
 cargar_grupo <- function(df){
   codiguera_ciiu() %>%
-    transmute(grupo, desc_grupo) %>%
-    distinct()
+    dplyr::transmute(grupo, desc_grupo) %>%
+    dplyr::distinct()
 }

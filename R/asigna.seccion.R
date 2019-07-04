@@ -2,7 +2,7 @@
 # Función para asignar sección de acuerdo a "NCM - anexo.pdf"
 asigna.seccion <- function(df){
   df %>%
-    mutate(seccion =
+    dplyr::mutate(seccion =
              if_else(as.numeric(capitulo) %in% 1:5, as.roman(1),
                      if_else(as.numeric(capitulo) %in% 6:14, as.roman(2),
                      if_else(as.numeric(capitulo) == 15, as.roman(3),
