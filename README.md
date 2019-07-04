@@ -6,7 +6,7 @@ Paquete que incluye funciones de lectura de las distintas codigueras disponibles
 Codiguera de ramas de actividad según Clasificación Industrial Internacional Uniforme Rev.4 (CIIU), en base al archivo de referencia del INE "Estructura CIIU4.pdf".
 ```
 codiguera_ciiu()
-cargar_seccion()
+cargar_seccion() # Esta no anda
 cargar_division()
 cargar_grupo()
 cargar_clase()
