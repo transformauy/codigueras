@@ -2,9 +2,10 @@ library(tidyverse)
 library(readxl)
 
 
-df_paises <- read_excel("~/../vburguete/codigueras/data-raw/df_paises.xlsx")
-iso3 <- read_excel("~/../vburguete/codigueras/data-raw/df_paises.xlsx", sheet = "iso")
-excep <- read_excel("~/../vburguete/codigueras/data-raw/df_paises.xlsx", sheet = "excep")
+
+df_paises <- read_excel(file.path('data-raw', 'df_paises.xlsx'))
+iso3 <- read_excel(file.path('data-raw', 'df_paises.xlsx'), sheet = "iso")
+excep <- read_excel(file.path('data-raw', 'df_paises.xlsx'), sheet = "excep")
 
 patrones <- df_paises$patron
 finales <- df_paises$final
